@@ -4,4 +4,7 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="get_weather">Get Weather</string>
+    <string name="temp">Temp: %.0f F </string>
+    <string name="current_weather">Current Weather</string>
+    <string name="current_time">Current Time: %s</string>
 </resources>

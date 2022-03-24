@@ -1,16 +1,16 @@
-package com.example.stormky.ui.home
+package com.example.stormky.ui
 
-import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import com.example.stormky.R
 import com.example.stormky.databinding.FragmentHomeBinding
 import com.example.stormky.model.WeatherViewModel
+import com.example.stormky.model.getFormattedTime
 
 class HomeFragment : Fragment() {
 
@@ -31,28 +31,24 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textHome
+        val timeTextView: TextView = binding.timeText
 
         weatherViewModel.weather.observe(viewLifecycleOwner){
-            textView.text = weatherViewModel.getFormattedTime(it.current.currentTime)
+            timeTextView.text = getString(R.string.current_time, getFormattedTime(it.current.currentTime))
         }
         return root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        _binding?.apply {
+            viewModel = weatherViewModel
+            lifecycleOwner = viewLifecycleOwner
+        }
+    }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-//    private fun locationGranted(): Boolean{
-//        return if (ActivityCompat.checkSelfPermission(
-//                requireActivity(), android.Manifest.permission.ACCESS_COARSE_LOCATION)
-//            != PackageManager.PERMISSION_GRANTED
-//        ) {
-//            ActivityCompat.requestPermissions(
-//                requireActivity(), arrayOf(android.Manifest.permission.ACCESS_COARSE_LOCATION), requestcode)
-//            false
-//        }else{
-//            true
-//        }
-//    }
 }
