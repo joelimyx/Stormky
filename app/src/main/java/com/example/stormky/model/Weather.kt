@@ -1,6 +1,6 @@
 package com.example.stormky.model
 
-data class Weather (val current:Current, val hourly: Hourly, val daily: Daily, val alerts: Alerts)
+data class Weather (val current:Current)//, val hourly: Hourly, val daily: Daily, val alerts: Alerts)
 
 class Alerts (
 
@@ -14,6 +14,4 @@ class Hourly {
 
 }
 
-class Current {
-
-}
+class Current (val sunrise:String, val sunset:String)
