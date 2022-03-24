@@ -34,7 +34,7 @@ class HomeFragment : Fragment() {
         val textView: TextView = binding.textHome
 
         weatherViewModel.weather.observe(viewLifecycleOwner){
-            textView.text = it.current.sunrise
+            textView.text = weatherViewModel.getFormattedTime(it.current.currentTime)
         }
         return root
     }
