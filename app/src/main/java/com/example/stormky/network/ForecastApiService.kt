@@ -21,7 +21,7 @@ private val retrofit = Retrofit.Builder()
 
 interface ForecastApiService {
     @GET("data/2.5/onecall")
-    suspend fun getAllWeather(
+    suspend fun getForecast(
         @Query("lat") lat:Double,
         @Query("lon") lon: Double,
         @Query("appid") appid:String = BuildConfig.KEY,

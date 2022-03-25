@@ -15,12 +15,12 @@ class WeatherViewModel : ViewModel() {
     val forecast:LiveData<Forecast> = _forecast
 
     init {
-        getAllWeather(40.74, 73.98)
+        getWeatherByLoc(40.74, 73.98)
     }
-    fun getAllWeather(lat:Double, lon:Double){
+    fun getWeatherByLoc(lat:Double, lon:Double){
         viewModelScope.launch {
             try {
-                _forecast.value = ForecastApi.retrofitService.getAllWeather(lat, lon, units = "imperial")
+                _forecast.value = ForecastApi.retrofitService.getForecast(lat, lon, units = "imperial")
             }catch (e: Exception){
                 throw IllegalArgumentException("Wrong coord or api")
             }
