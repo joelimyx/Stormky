@@ -10,12 +10,12 @@ data class Forecast (val current:Current)//, val hourly: Hourly, val daily: Dail
 data class Current (
     @Json(name="dt")val currentTime: Long,
     val temp: Double,
-    @Json(name = "feels_like") val feelsLike: Double
-//    val humidity: Int,
-//    val uvi: Double,
-//    val clouds:Int,
-//    val visibility:Int,
-//    @Json(name = "wind_speed") val windSpeed:Int
+    @Json(name = "feels_like") val feelsLike: Double,
+    val humidity: Int,
+    val uvi: Double,
+    val clouds:Int,
+    val visibility:Int
+//    val wind_speed:Int
 )
 
 class Weather(
