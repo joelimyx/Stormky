@@ -19,7 +19,7 @@ private val retrofit = Retrofit.Builder()
     .baseUrl(BASE_URL)
     .build()
 
-interface WeatherApiService {
+interface ForecastApiService {
     @GET("data/2.5/onecall")
     suspend fun getAllWeather(
         @Query("lat") lat:Double,
@@ -30,8 +30,8 @@ interface WeatherApiService {
     ): Weather
 }
 
-object WeatherApi{
-    val retrofitService: WeatherApiService by lazy {
-        retrofit.create(WeatherApiService::class.java)
+object ForecastApi{
+    val retrofitService: ForecastApiService by lazy {
+        retrofit.create(ForecastApiService::class.java)
     }
 }

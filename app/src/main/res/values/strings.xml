@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Stormky</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
+    <string name="title_hourly">Hourly</string>
     <string name="title_notifications">Notifications</string>
     <string name="get_weather">Get Weather</string>
     <string name="temp">Temp: %.0f F </string>

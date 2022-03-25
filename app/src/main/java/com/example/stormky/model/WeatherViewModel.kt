@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.stormky.network.WeatherApi
+import com.example.stormky.network.ForecastApi
 import kotlinx.coroutines.launch
 import java.lang.Exception
 import java.lang.IllegalArgumentException
@@ -20,7 +20,7 @@ class WeatherViewModel : ViewModel() {
     fun getAllWeather(lat:Double, lon:Double){
         viewModelScope.launch {
             try {
-                _weather.value = WeatherApi.retrofitService.getAllWeather(lat, lon, units = "imperial")
+                _weather.value = ForecastApi.retrofitService.getAllWeather(lat, lon, units = "imperial")
             }catch (e: Exception){
                 throw IllegalArgumentException("Wrong coord or api")
             }
