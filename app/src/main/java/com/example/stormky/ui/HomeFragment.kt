@@ -33,7 +33,7 @@ class HomeFragment : Fragment() {
 
         val timeTextView: TextView = binding.timeText
 
-        weatherViewModel.weather.observe(viewLifecycleOwner){
+        weatherViewModel.forecast.observe(viewLifecycleOwner){
             timeTextView.text = getString(R.string.current_time, getFormattedTime(it.current.currentTime))
         }
         return root

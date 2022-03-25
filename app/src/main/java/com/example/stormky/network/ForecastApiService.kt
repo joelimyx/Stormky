@@ -1,7 +1,7 @@
 package com.example.stormky.network
 
 import com.example.stormky.BuildConfig
-import com.example.stormky.model.Weather
+import com.example.stormky.model.Forecast
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Retrofit
@@ -27,7 +27,7 @@ interface ForecastApiService {
         @Query("appid") appid:String = BuildConfig.KEY,
         @Query("units") units:String,
         @Query("exclude") exclude:String = "minutely"
-    ): Weather
+    ): Forecast
 }
 
 object ForecastApi{

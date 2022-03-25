@@ -11,8 +11,8 @@ import java.lang.IllegalArgumentException
 
 class WeatherViewModel : ViewModel() {
 
-    private val _weather = MutableLiveData<Weather>()
-    val weather:LiveData<Weather> = _weather
+    private val _forecast = MutableLiveData<Forecast>()
+    val forecast:LiveData<Forecast> = _forecast
 
     init {
         getAllWeather(40.74, 73.98)
@@ -20,7 +20,7 @@ class WeatherViewModel : ViewModel() {
     fun getAllWeather(lat:Double, lon:Double){
         viewModelScope.launch {
             try {
-                _weather.value = ForecastApi.retrofitService.getAllWeather(lat, lon, units = "imperial")
+                _forecast.value = ForecastApi.retrofitService.getAllWeather(lat, lon, units = "imperial")
             }catch (e: Exception){
                 throw IllegalArgumentException("Wrong coord or api")
             }
