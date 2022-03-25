@@ -10,12 +10,13 @@ data class Forecast (val current:Current)//, val hourly: Hourly, val daily: Dail
 data class Current (
     @Json(name="dt")val currentTime: Long,
     val temp: Double,
-    @Json(name = "feels_like") val feelsLike: Double,
+    val feels_like: Double,
     val humidity: Int,
     val uvi: Double,
     val clouds:Int,
-    val visibility:Int
-//    val wind_speed:Int
+    val visibility:Int,
+    val wind_speed:Double,
+    val weather: List<Weather>
 )
 
 class Weather(
@@ -37,3 +38,5 @@ class Alerts (
 )
 
 fun getFormattedTime(time:Long): String = SimpleDateFormat("h:mm a", Locale.getDefault()).format(Date(time*1000))
+
+fun meterToMile(meter:Int):Double = meter.toDouble()/1609

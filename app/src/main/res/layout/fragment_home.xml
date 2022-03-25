@@ -11,6 +11,12 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/vertical_guide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintGuide_percent=".5"
+            android:orientation="vertical"/>
 
         <TextView
             android:id="@+id/current_text"
@@ -28,12 +34,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:textSize="28sp"
             android:text="@{@string/temp(viewModel.current.temp)}"
+            android:textSize="28sp"
             app:layout_constraintBottom_toTopOf="@+id/time_text"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/vertical_guide"
             app:layout_constraintStart_toStartOf="parent"
             tools:text="Temp: 35F" />
+
+        <TextView
+            android:id="@+id/feels_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="@{@string/feels_like(viewModel.current.feels_like)}"
+            android:textSize="28sp"
+            app:layout_constraintBottom_toTopOf="@+id/time_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/vertical_guide"
+            tools:text="Feels Like: 35F" />
 
         <TextView
             android:id="@+id/time_text"
@@ -42,23 +60,79 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
+            android:gravity="center_horizontal"
             android:textAlignment="center"
             android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/weather_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:gravity="center_horizontal"
-            tools:text="Time: 6:00PM"/>
+            tools:text="Time: 6:00PM" />
+
+
+
+        <TextView
+            android:id="@+id/humidity_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{@string/humidity(viewModel.current.humidity)}"
+            app:layout_constraintEnd_toStartOf="@+id/uvi_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/uvi_text" />
+
+        <TextView
+            android:id="@+id/uvi_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="44dp"
+            android:text="@{@string/uv_index(viewModel.current.uvi)}"
+            app:layout_constraintEnd_toStartOf="@+id/vertical_guide"
+            app:layout_constraintStart_toStartOf="@+id/vertical_guide"
+            app:layout_constraintTop_toBottomOf="@+id/time_text" />
+
+        <TextView
+            android:id="@+id/cloud_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{@string/cloud_cov(viewModel.current.clouds)}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/uvi_text"
+            app:layout_constraintTop_toTopOf="@+id/uvi_text" />
+
+        <TextView
+            android:id="@+id/visibility_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="68dp"
+            android:text="@{@string/visibility(viewModel.visibility)}"
+            app:layout_constraintEnd_toStartOf="@+id/vertical_guide"
+            app:layout_constraintHorizontal_bias="0.506"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/uvi_text" />
+
+        <TextView
+            android:id="@+id/wind_speed_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{@string/wind_speed(viewModel.current.wind_speed)}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/vertical_guide"
+            app:layout_constraintTop_toTopOf="@+id/visibility_text" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/weather_button"
+            style="@style/Widget.Material3.Button.ElevatedButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/time_text"
+            android:layout_marginBottom="136dp"
+            android:onClick="@{()->viewModel.getWeatherByLoc(44.07, -77.45)}"
             android:text="@string/get_weather"
-            android:onClick="@{()->viewModel.getWeatherByLoc(44.07, -77.45)}"/>
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            app:backgroundTint="#2196F3"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
