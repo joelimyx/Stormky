@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-data class Weather (val current:Current)//, val hourly: Hourly, val daily: Daily, val alerts: Alerts)
+data class Forecast (val current:Current)//, val hourly: Hourly, val daily: Daily, val alerts: Alerts)
 
 class Alerts (
 
