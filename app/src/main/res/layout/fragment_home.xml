@@ -78,7 +78,8 @@
             android:text="@{@string/humidity(viewModel.current.humidity)}"
             app:layout_constraintEnd_toStartOf="@+id/uvi_text"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/uvi_text" />
+            app:layout_constraintTop_toTopOf="@+id/uvi_text"
+            tools:text="Humidity: 50%"/>
 
         <TextView
             android:id="@+id/uvi_text"
@@ -88,7 +89,8 @@
             android:text="@{@string/uv_index(viewModel.current.uvi)}"
             app:layout_constraintEnd_toStartOf="@+id/vertical_guide"
             app:layout_constraintStart_toStartOf="@+id/vertical_guide"
-            app:layout_constraintTop_toBottomOf="@+id/time_text" />
+            app:layout_constraintTop_toBottomOf="@+id/time_text"
+            tools:text="UV Index: 1"/>
 
         <TextView
             android:id="@+id/cloud_text"
@@ -97,7 +99,8 @@
             android:text="@{@string/cloud_cov(viewModel.current.clouds)}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/uvi_text"
-            app:layout_constraintTop_toTopOf="@+id/uvi_text" />
+            app:layout_constraintTop_toTopOf="@+id/uvi_text"
+            tools:text="Cloud Cov: 80%"/>
 
         <TextView
             android:id="@+id/visibility_text"
@@ -108,7 +111,8 @@
             app:layout_constraintEnd_toStartOf="@+id/vertical_guide"
             app:layout_constraintHorizontal_bias="0.506"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/uvi_text" />
+            app:layout_constraintTop_toBottomOf="@+id/uvi_text"
+            tools:text="Visibility: 2.9mi"/>
 
         <TextView
             android:id="@+id/wind_speed_text"
@@ -117,7 +121,8 @@
             android:text="@{@string/wind_speed(viewModel.current.wind_speed)}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/vertical_guide"
-            app:layout_constraintTop_toTopOf="@+id/visibility_text" />
+            app:layout_constraintTop_toTopOf="@+id/visibility_text"
+            tools:text="Wind Speed: 5 mph"/>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/weather_button"
