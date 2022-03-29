@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.stormky.R
 import com.example.stormky.databinding.FragmentHomeBinding
-import com.example.stormky.model.WeatherViewModel
+import com.example.stormky.model.ForecastViewModel
 import com.example.stormky.model.getFormattedTime
 
 class HomeFragment : Fragment() {
@@ -20,7 +20,7 @@ class HomeFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
-    private val weatherViewModel: WeatherViewModel by activityViewModels()
+    private val forecastViewModel: ForecastViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,7 +33,7 @@ class HomeFragment : Fragment() {
 
         val timeTextView: TextView = binding.timeText
 
-        weatherViewModel.current.observe(viewLifecycleOwner){
+        forecastViewModel.current.observe(viewLifecycleOwner){
             timeTextView.text = getString(R.string.current_time, getFormattedTime(it.currentTime))
         }
         return root
@@ -43,7 +43,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         _binding?.apply {
-            viewModel = weatherViewModel
+            viewModel = forecastViewModel
             lifecycleOwner = viewLifecycleOwner
         }
     }

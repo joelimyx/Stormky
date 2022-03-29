@@ -3,141 +3,217 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.HomeFragment">
+
     <data>
+
         <variable
             name="viewModel"
-            type="com.example.stormky.model.WeatherViewModel" />
+            type="com.example.stormky.model.ForecastViewModel" />
     </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/vertical_guide"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintGuide_percent=".5"
-            android:orientation="vertical"/>
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".5" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent=".1" />
 
         <TextView
             android:id="@+id/current_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
+            android:layout_margin="32dp"
+            android:fontFamily="@font/merriweather"
             android:text="@string/current_weather"
-            android:textSize="32sp"
-            app:layout_constraintBottom_toTopOf="@+id/temp_text"
+            android:textColor="@color/black"
+            android:textSize="44sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline2" />
 
         <TextView
             android:id="@+id/temp_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/merriweather"
             android:text="@{@string/temp(viewModel.current.temp)}"
+            android:textColor="@color/black"
             android:textSize="28sp"
-            app:layout_constraintBottom_toTopOf="@+id/time_text"
             app:layout_constraintEnd_toStartOf="@+id/vertical_guide"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline4"
+            app:layout_constraintTop_toBottomOf="@+id/current_text"
             tools:text="Temp: 35F" />
+
+        <ImageView
+            android:id="@+id/temp_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:src="@drawable/ic_baseline_thermostat_24"
+            app:layout_constraintBottom_toBottomOf="@+id/feels_text"
+            app:layout_constraintStart_toStartOf="@+id/guideline4"
+            app:layout_constraintTop_toTopOf="@+id/feels_text" />
 
         <TextView
             android:id="@+id/feels_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/merriweather"
             android:text="@{@string/feels_like(viewModel.current.feels_like)}"
-            android:textSize="28sp"
-            app:layout_constraintBottom_toTopOf="@+id/time_text"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/vertical_guide"
-            tools:text="Feels Like: 35F" />
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintStart_toEndOf="@+id/temp_icon"
+            app:layout_constraintTop_toBottomOf="@+id/temp_text"
+            tools:text="32F" />
 
         <TextView
             android:id="@+id/time_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginEnd="8dp"
+            android:fontFamily="@font/merriweather"
             android:gravity="center_horizontal"
             android:textAlignment="center"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toTopOf="@+id/weather_button"
+            android:textColor="@color/black"
+            android:textSize="28sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Time: 6:00PM" />
+            app:layout_constraintStart_toStartOf="@+id/vertical_guide"
+            app:layout_constraintTop_toTopOf="@+id/temp_text"
+            tools:text="6:00PM" />
 
 
+        <ImageView
+            android:id="@+id/humidity_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:src="@drawable/ic_opacity_black_24dp"
+            app:layout_constraintStart_toStartOf="@+id/guideline4"
+            app:layout_constraintTop_toTopOf="@+id/humidity_text" />
 
         <TextView
             android:id="@+id/humidity_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/merriweather"
             android:text="@{@string/humidity(viewModel.current.humidity)}"
-            app:layout_constraintEnd_toStartOf="@+id/uvi_text"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/uvi_text"
-            tools:text="Humidity: 50%"/>
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintStart_toEndOf="@+id/humidity_icon"
+            app:layout_constraintTop_toBottomOf="@+id/feels_text"
+            tools:text=" 50%" />
 
         <TextView
             android:id="@+id/uvi_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="44dp"
+            android:fontFamily="@font/merriweather"
             android:text="@{@string/uv_index(viewModel.current.uvi)}"
-            app:layout_constraintEnd_toStartOf="@+id/vertical_guide"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/vertical_guide"
-            app:layout_constraintTop_toBottomOf="@+id/time_text"
-            tools:text="UV Index: 1"/>
+            app:layout_constraintTop_toTopOf="@+id/humidity_text"
+            tools:text="UV Index: 1" />
+
+        <ImageView
+            android:id="@+id/cloud_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:src="@drawable/ic_baseline_cloud_queue_24"
+            app:layout_constraintBottom_toBottomOf="@+id/cloud_text"
+            app:layout_constraintEnd_toStartOf="@+id/cloud_text"
+            app:layout_constraintTop_toTopOf="@+id/cloud_text" />
 
         <TextView
             android:id="@+id/cloud_text"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:fontFamily="@font/merriweather"
             android:text="@{@string/cloud_cov(viewModel.current.clouds)}"
+            android:textColor="@color/black"
+            android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/uvi_text"
-            app:layout_constraintTop_toTopOf="@+id/uvi_text"
-            tools:text="Cloud Cov: 80%"/>
+            app:layout_constraintStart_toStartOf="@+id/vertical_guide"
+            app:layout_constraintTop_toTopOf="@+id/feels_text"
+            tools:text="80%" />
 
         <TextView
             android:id="@+id/visibility_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="68dp"
+            android:fontFamily="@font/merriweather"
             android:text="@{@string/visibility(viewModel.visibility)}"
-            app:layout_constraintEnd_toStartOf="@+id/vertical_guide"
-            app:layout_constraintHorizontal_bias="0.506"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/uvi_text"
-            tools:text="Visibility: 2.9mi"/>
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/vertical_guide"
+            app:layout_constraintTop_toTopOf="@+id/wind_speed_text"
+            tools:text="Visibility: 2.9mi" />
+
+        <ImageView
+            android:id="@+id/wind_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:src="@drawable/ic_baseline_air_24"
+            app:layout_constraintBottom_toBottomOf="@+id/wind_speed_text"
+            app:layout_constraintStart_toStartOf="@+id/guideline4"
+            app:layout_constraintTop_toTopOf="@+id/wind_speed_text" />
 
         <TextView
             android:id="@+id/wind_speed_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/merriweather"
             android:text="@{@string/wind_speed(viewModel.current.wind_speed)}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/vertical_guide"
-            app:layout_constraintTop_toTopOf="@+id/visibility_text"
-            tools:text="Wind Speed: 5 mph"/>
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintStart_toEndOf="@+id/wind_icon"
+            app:layout_constraintTop_toBottomOf="@+id/humidity_text"
+            tools:text="5 mph" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/weather_button"
-            style="@style/Widget.Material3.Button.ElevatedButton"
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/location_fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="136dp"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="16dp"
+            android:contentDescription="@string/get_location"
             android:onClick="@{()->viewModel.getWeatherByLoc(44.07, -77.45)}"
-            android:text="@string/get_weather"
-            android:textColor="#FFFFFF"
-            android:textSize="14sp"
-            app:backgroundTint="#2196F3"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:src="@drawable/ic_outline_my_location_24"
+            app:layout_constraintBottom_toTopOf="@+id/guideline3"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_end="64dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="20dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

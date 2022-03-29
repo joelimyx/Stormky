@@ -5,12 +5,13 @@
     <string name="title_notifications">Notifications</string>
     <string name="get_weather">Get Weather</string>
     <string name="temp">Temp: %.0f F </string>
-    <string name="feels_like">Feels Like: %.0f F </string>
+    <string name="feels_like"> %.0f F </string>
     <string name="current_weather">Current Weather</string>
-    <string name="current_time">Current Time: %s</string>
-    <string name="humidity">Humidity: %d%%</string>
+    <string name="current_time">%s</string>
+    <string name="humidity"> %d%%</string>
     <string name="uv_index">UV Index: %.0f</string>
-    <string name="cloud_cov">Cloud Cov: %d%%</string>
+    <string name="cloud_cov"> %d%%</string>
     <string name="visibility">Visibility: %.1f mi</string>
-    <string name="wind_speed">Wind Speed: %.0f mph</string>
+    <string name="wind_speed"> %.0f mph</string>
+    <string name="get_location">Get Location</string>
 </resources>

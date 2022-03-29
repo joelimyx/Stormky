@@ -7,9 +7,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.ViewModelProvider
 import com.example.stormky.databinding.FragmentNotificationsBinding
-import com.example.stormky.model.WeatherViewModel
+import com.example.stormky.model.ForecastViewModel
 
 class NotificationsFragment : Fragment() {
 
@@ -18,7 +17,7 @@ class NotificationsFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
-    private val weatherViewModel: WeatherViewModel by activityViewModels()
+    private val forecastViewModel: ForecastViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,

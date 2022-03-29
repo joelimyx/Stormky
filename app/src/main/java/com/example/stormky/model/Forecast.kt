@@ -1,5 +1,6 @@
 package com.example.stormky.model
 
+import androidx.annotation.Nullable
 import com.squareup.moshi.Json
 import java.text.SimpleDateFormat
 import java.util.*
@@ -16,6 +17,8 @@ data class Current (
     val clouds:Int,
     val visibility:Int,
     val wind_speed:Double,
+    //@Nullable val rain:Rain,
+    //@Nullable val snow:Snow,
     val weather: List<Weather>
 )
 
@@ -28,6 +31,14 @@ class Weather(
 class Daily {
 
 }
+
+class Rain(
+    @Json(name = "1h")val last_hour: Double
+)
+
+class Snow(
+    @Json(name = "1h")val last_hour: Double
+)
 
 class Hourly {
 
