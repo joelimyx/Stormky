@@ -29,9 +29,9 @@ class ForecastViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 _forecast.value = ForecastApi.retrofitService.getForecast(lat, lon, units = "imperial")
-                _current.value = forecast.value?.current
-                _visibility.value = current.value?.visibility
-                _weather.value = current.value?.weather
+                _current.value = forecast.value!!.current
+                _visibility.value = current.value!!.visibility
+                _weather.value = current.value!!.weather
             }catch (e: Exception){
                 throw e
             }

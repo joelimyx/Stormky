@@ -5,12 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.stormky.R
 import com.example.stormky.databinding.FragmentHomeBinding
 import com.example.stormky.model.ForecastViewModel
 import com.example.stormky.model.getFormattedTime
+import com.google.android.material.elevation.SurfaceColors
 
 class HomeFragment : Fragment() {
 
@@ -45,10 +47,19 @@ class HomeFragment : Fragment() {
         _binding?.apply {
             viewModel = forecastViewModel
             lifecycleOwner = viewLifecycleOwner
+            homeFragment = this@HomeFragment
         }
+        val color = SurfaceColors.SURFACE_0.getColor(requireContext())
+
+
     }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+    fun getWeatherInFrag(lat:Double, lon:Double){
+        forecastViewModel.getWeatherByLoc(lat, lon)
+
+
     }
 }

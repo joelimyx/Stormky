@@ -17,8 +17,8 @@ data class Current (
     val clouds:Int,
     val visibility:Int,
     val wind_speed:Double,
-    //@Nullable val rain:Rain,
-    //@Nullable val snow:Snow,
+    val rain:Rain?,
+    val snow:Snow?,
     val weather: List<Weather>
 )
 
