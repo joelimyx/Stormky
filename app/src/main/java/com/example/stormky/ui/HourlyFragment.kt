@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.stormky.databinding.FragmentHourlyBinding
-import com.example.stormky.model.WeatherViewModel
+import com.example.stormky.model.ForecastViewModel
 
 class HourlyFragment : Fragment() {
 
@@ -17,7 +17,7 @@ class HourlyFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
-    private val weatherViewModel: WeatherViewModel by activityViewModels()
+    private val forecastViewModel: ForecastViewModel by activityViewModels()
 
 
     override fun onCreateView(
