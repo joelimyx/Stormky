@@ -8,6 +8,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.stormky.databinding.ActivityMainBinding
+import com.google.android.material.color.DynamicColors
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,6 +19,7 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         supportActionBar?.hide()
+        DynamicColors.applyToActivitiesIfAvailable(application)
         setContentView(binding.root)
 
         val navView: BottomNavigationView = binding.navView

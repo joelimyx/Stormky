@@ -3,7 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Cfrogz/AndroidStudioProjects/Stormky/app/src/main/res/drawable/gradient_drawable.xml" value="0.274" />
         <entry key="..\:/Users/Cfrogz/AndroidStudioProjects/Stormky/app/src/main/res/drawable/ic_baseline_air_24.xml" value="0.274" />
+        <entry key="..\:/Users/Cfrogz/AndroidStudioProjects/Stormky/app/src/main/res/drawable/ic_baseline_arrow_down_24.xml" value="0.274" />
         <entry key="..\:/Users/Cfrogz/AndroidStudioProjects/Stormky/app/src/main/res/drawable/ic_outline_my_location_24.xml" value="0.274" />
         <entry key="..\:/Users/Cfrogz/AndroidStudioProjects/Stormky/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Cfrogz/AndroidStudioProjects/Stormky/app/src/main/res/layout/fragment_dashboard.xml" value="0.36666666666666664" />

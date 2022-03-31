@@ -9,9 +9,10 @@
     <string name="current_weather">Current Weather</string>
     <string name="current_time">%s</string>
     <string name="humidity"> %d%%</string>
-    <string name="uv_index"> %.0f</string>
+    <string name="precipitation"> %.2f in</string>
     <string name="cloud_cov"> %d%%</string>
     <string name="visibility"> %.1f mi</string>
     <string name="wind_speed"> %.0f mph</string>
     <string name="get_location">Get Location</string>
+    <string name="weather_icon_text">Weather Icon</string>
 </resources>

@@ -30,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent=".1" />
+            app:layout_constraintGuide_percent=".05" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/left_v_guide"
@@ -39,12 +39,20 @@
             android:orientation="vertical"
             app:layout_constraintGuide_begin="24dp" />
 
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/right_v_guide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="24dp" />
+
         <ImageView
             android:id="@+id/current_icon"
             android:layout_width="64dp"
             android:layout_height="64dp"
             android:padding="8dp"
-            app:iconUrl="@{viewModel.current.weather[0].icon}"
+            android:contentDescription="@string/weather_icon_text"
+            app:iconUrl="@{viewModel.weather[0].icon}"
             app:layout_constraintBottom_toBottomOf="@+id/current_text"
             app:layout_constraintStart_toStartOf="@+id/left_v_guide"
             app:layout_constraintTop_toTopOf="@+id/current_text" />
@@ -55,7 +63,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/merriweather"
             android:text="@{viewModel.weather[0].main}"
-            android:textColor="@color/black"
+            android:textColor="@color/design_default_color_primary"
             android:textSize="34sp"
             android:layout_marginTop="32dp"
             app:layout_constraintStart_toEndOf="@+id/current_icon"
@@ -175,7 +183,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="8dp"
-            android:src="@drawable/ic_uv_rays_of_sun_svgrepo_com"
+            android:src="@drawable/ic_rain_24"
             app:layout_constraintStart_toStartOf="@+id/mid_v_guide"
             app:layout_constraintTop_toTopOf="@+id/humidity_icon" />
 
@@ -184,12 +192,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/merriweather"
-            android:text="@{@string/uv_index(viewModel.current.uvi)}"
+            android:text="@{@string/precipitation(viewModel.rainAndSnow)}"
             android:textColor="@color/black"
             android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/uv_icon"
             app:layout_constraintStart_toEndOf="@+id/uv_icon"
-            app:layout_constraintTop_toTopOf="@+id/humidity_text"
-            tools:text="1" />
+            app:layout_constraintTop_toTopOf="@+id/uv_icon"
+            tools:text="0.21 in" />
 
         <ImageView
             android:id="@+id/wind_icon"
@@ -255,6 +264,26 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_end="64dp" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_margin="16dp"
+            android:minWidth="300dp"
+            android:src="@drawable/gradient_drawable"
+            app:layout_constraintEnd_toStartOf="@+id/right_v_guide"
+            app:layout_constraintStart_toStartOf="@+id/left_v_guide"
+            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_arrow_down_24"
+            app:layout_constraintStart_toStartOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/wind_speed_text"
+            android:layout_marginTop="32dp"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -49,8 +49,6 @@ class HomeFragment : Fragment() {
             lifecycleOwner = viewLifecycleOwner
             homeFragment = this@HomeFragment
         }
-        val color = SurfaceColors.SURFACE_0.getColor(requireContext())
-
 
     }
     override fun onDestroyView() {
