@@ -4,8 +4,8 @@
     <string name="title_hourly">Hourly</string>
     <string name="title_notifications">Notifications</string>
     <string name="get_weather">Get Weather</string>
-    <string name="temp">Temp: %.0f F </string>
-    <string name="feels_like"> %.0f F </string>
+    <string name="temp">Temp: %.0f \u00B0F </string>
+    <string name="feels_like"> %.0f \u00B0F </string>
     <string name="current_weather">Current Weather</string>
     <string name="current_time">%s</string>
     <string name="humidity"> %d%%</string>
@@ -15,4 +15,5 @@
     <string name="wind_speed"> %.0f mph</string>
     <string name="get_location">Get Location</string>
     <string name="weather_icon_text">Weather Icon</string>
+    <string name="probability">Probability: %.0f%%</string>
 </resources>

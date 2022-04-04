@@ -1,10 +1,14 @@
 package com.example.stormky.ui
 
 import android.media.Image
+import android.util.Log
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
+import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.stormky.R
+import com.example.stormky.model.Current
+import com.example.stormky.ui.hourly.HourlyAdapter
 
 class BindingAdapters {
 }
@@ -18,4 +22,10 @@ fun bindImage(imgView:ImageView, iconUrl: String?){
             placeholder(R.drawable.ic_baseline_error_outline_24)
         }
     }
+}
+
+@BindingAdapter("listData")
+fun bindRecyclerView(recyclerView: RecyclerView, data:List<Current>){
+    val adapter = recyclerView.adapter as HourlyAdapter
+    adapter.submitList(data)
 }

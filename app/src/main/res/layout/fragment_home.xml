@@ -130,7 +130,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/feels_icon"
             app:layout_constraintStart_toEndOf="@+id/feels_icon"
             app:layout_constraintTop_toTopOf="@+id/feels_icon"
-            tools:text="32F" />
+            tools:text="32\u00B0F" />
 
 
         <ImageView
@@ -188,7 +188,7 @@
             app:layout_constraintTop_toTopOf="@+id/humidity_icon" />
 
         <TextView
-            android:id="@+id/uvi_text"
+            android:id="@+id/precip_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/merriweather"

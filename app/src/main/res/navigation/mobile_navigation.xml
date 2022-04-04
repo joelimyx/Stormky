@@ -13,7 +13,7 @@
 
     <fragment
         android:id="@+id/navigation_hourly"
-        android:name="com.example.stormky.ui.HourlyFragment"
+        android:name="com.example.stormky.ui.hourly.HourlyFragment"
         android:label="@string/title_hourly"
         tools:layout="@layout/fragment_hourly" />
 

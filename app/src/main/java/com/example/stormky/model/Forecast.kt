@@ -6,7 +6,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-data class Forecast (val current:Current)//, val hourly: Hourly, val daily: Daily, val alerts: Alerts)
+data class Forecast (val current:Current, @Json(name="hourly")val hourlyList: List<Current>)//, val daily: Daily, val alerts: Alerts)
 
 data class Current (
     @Json(name="dt")val currentTime: Long,
@@ -17,16 +17,18 @@ data class Current (
     val clouds:Int,
     val visibility:Int,
     val wind_speed:Double,
+    val pop:Double?,
     val rain:Rain?,
     val snow:Snow?,
     val weather: List<Weather>
-)
+    )
 
 class Weather(
     val id:Int,
     val main: String,
     val description: String,
-    val icon: String)
+    val icon: String
+    )
 
 class Daily {
 
@@ -39,10 +41,6 @@ class Rain(
 class Snow(
     @Json(name = "1h")val last_hour: Double
 )
-
-class Hourly {
-
-}
 
 class Alerts (
 
