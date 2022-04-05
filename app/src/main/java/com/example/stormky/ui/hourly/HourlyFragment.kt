@@ -4,8 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import com.example.stormky.R
 import com.example.stormky.databinding.FragmentHourlyBinding
 import com.example.stormky.model.ForecastViewModel
 
@@ -37,6 +39,7 @@ class HourlyFragment : Fragment() {
             lifecycleOwner = viewLifecycleOwner
             viewModel = forecastViewModel
             recyclerView.adapter = HourlyAdapter()
+            //recyclerView.layoutAnimation = AnimationUtils.loadLayoutAnimation(requireContext(), R.anim.layout_anim)
         }
     }
 

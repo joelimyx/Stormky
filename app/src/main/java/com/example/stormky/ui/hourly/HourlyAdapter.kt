@@ -1,14 +1,14 @@
 package com.example.stormky.ui.hourly
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.stormky.R
 import com.example.stormky.databinding.HourlyItemBinding
 import com.example.stormky.model.Current
-import com.example.stormky.model.getFormattedTime
 
 class HourlyAdapter:ListAdapter<Current, HourlyAdapter.HourlyViewHolder>(DiffCallback) {
 
@@ -24,8 +24,17 @@ class HourlyAdapter:ListAdapter<Current, HourlyAdapter.HourlyViewHolder>(DiffCal
     }
     class HourlyViewHolder(private var binding: HourlyItemBinding):
         RecyclerView.ViewHolder(binding.root){
-            fun bind(current: Current){
+            fun bind(current: Current, position: Int){
                 binding.hourly = current
+                val day = position/24
+                val hours = position % 24
+                val hoursText:String
+                when(position){
+                    in 1..23-> hoursText = "$hours H"
+                    24 -> hoursText = "$day D"
+                    else -> hoursText = "$day D $hours H"
+                }
+                binding.hourText.text = hoursText
                 binding.executePendingBindings()
             }
     }
@@ -37,6 +46,8 @@ class HourlyAdapter:ListAdapter<Current, HourlyAdapter.HourlyViewHolder>(DiffCal
 
     override fun onBindViewHolder(holder: HourlyViewHolder, position: Int) {
         val current = getItem(position)
-        holder.bind(current)
+        AnimationUtils.loadAnimation(holder.itemView.context, R.anim.item_insert_anim)
+        holder.bind(current, position+1)
+
     }
 }

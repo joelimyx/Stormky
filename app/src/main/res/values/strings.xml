@@ -4,7 +4,7 @@
     <string name="title_hourly">Hourly</string>
     <string name="title_notifications">Notifications</string>
     <string name="get_weather">Get Weather</string>
-    <string name="temp">Temp: %.0f \u00B0F </string>
+    <string name="temp">%.0f \u00B0F </string>
     <string name="feels_like"> %.0f \u00B0F </string>
     <string name="current_weather">Current Weather</string>
     <string name="current_time">%s</string>

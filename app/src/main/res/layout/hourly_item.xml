@@ -13,6 +13,7 @@
     </data>
 
     <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_view_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
@@ -20,7 +21,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp">
+            android:layout_height="wrap_content"
+            android:padding="8dp">
 
             <ImageView
                 android:id="@+id/weather_item_icon"
@@ -44,40 +46,55 @@
                 tools:text="Sunny" />
 
             <TextView
-                android:id="@+id/prop_item_text"
+                android:id="@+id/temp_item_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:text="@{@string/probability(hourly.pop*100)}"
+                android:text="@{@string/temp(hourly.temp)}"
                 app:layout_constraintStart_toEndOf="@+id/main_item_text"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="73\u00B0F" />
 
             <TextView
                 android:id="@+id/precip_text_item"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/prop_item_text"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:text="@{@string/precipitation(hourly.rainAndSnow)}"
+                app:layout_constraintEnd_toEndOf="@+id/prop_item_text"
+                app:layout_constraintStart_toStartOf="@+id/prop_item_text"
+                app:layout_constraintTop_toBottomOf="@+id/prop_item_text"
+                tools:text="1.54 in" />
 
             <TextView
-                android:id="@+id/temp_item_text"
+                android:id="@+id/prop_item_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/weather_item_icon"
-                tools:text="73\u00B0F" />
+                android:text="@{@string/probability(hourly.pop*100)}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/temp_item_text"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Probability: 60%" />
 
             <TextView
                 android:id="@+id/wind_item_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
+                android:text="@{@string/wind_speed(hourly.wind_speed)}"
+                app:layout_constraintStart_toEndOf="@+id/weather_item_icon"
+                app:layout_constraintTop_toBottomOf="@+id/main_item_text"
+                tools:text="16mph" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/hour_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/temp_item_text" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="1H" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 </layout>

@@ -21,7 +21,7 @@ class ForecastViewModel : ViewModel() {
     private val _weather = MutableLiveData<List<Weather>>()
     val weather:LiveData<List<Weather>> = _weather
 
-    private val _rainAndSnow = MutableLiveData<Double>()
+    private val _rainAndSnow = MutableLiveData(0.0)
     val rainAndSnow:LiveData<Double> = _rainAndSnow
 
     private val _hourlyList = MutableLiveData<List<Current>>()
@@ -39,9 +39,7 @@ class ForecastViewModel : ViewModel() {
                 _current.value = forecast.value!!.current
                 _visibility.value = current.value!!.visibility
                 _weather.value = current.value!!.weather
-                val rain = (current.value!!.rain?.last_hour) ?: 0.0
-                val snow = (current.value!!.snow?.last_hour) ?: 0.0
-                _rainAndSnow.value = rain+snow
+                _rainAndSnow.value = current.value?.rainAndSnow
 
                 //Hourly
                 _hourlyList.value = forecast.value!!.hourlyList
