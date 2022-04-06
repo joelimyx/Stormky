@@ -21,15 +21,19 @@ class ForecastViewModel : ViewModel() {
     private val _weather = MutableLiveData<List<Weather>>()
     val weather:LiveData<List<Weather>> = _weather
 
-    private val _rainAndSnow = MutableLiveData(0.0)
-    val rainAndSnow:LiveData<Double> = _rainAndSnow
-
     private val _hourlyList = MutableLiveData<List<Current>>()
     val hourlyList:LiveData<List<Current>> = _hourlyList
+
+    private val _dailyList = MutableLiveData<List<Daily>>()
+    val dailyList:LiveData<List<Daily>> = _dailyList
+
+    private val _listSwitch = MutableLiveData<Boolean>(true)
+    val listSwitch: LiveData<Boolean> = _listSwitch
 
     init {
         getWeatherByLoc(40.74, 73.98)
     }
+
     fun getWeatherByLoc(lat:Double, lon:Double){
         viewModelScope.launch {
             try {
@@ -39,13 +43,19 @@ class ForecastViewModel : ViewModel() {
                 _current.value = forecast.value!!.current
                 _visibility.value = current.value!!.visibility
                 _weather.value = current.value!!.weather
-                _rainAndSnow.value = current.value?.rainAndSnow
 
                 //Hourly
                 _hourlyList.value = forecast.value!!.hourlyList
+
+                //daily
+                _dailyList.value = forecast.value!!.dailyList
+
             }catch (e: Exception){
                 throw e
             }
         }
+    }
+    fun toggleSwitch(){
+        _listSwitch.value = !_listSwitch.value!!
     }
 }

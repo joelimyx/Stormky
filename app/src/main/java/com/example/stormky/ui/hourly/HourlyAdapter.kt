@@ -7,12 +7,12 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.stormky.R
-import com.example.stormky.databinding.HourlyItemBinding
+import com.example.stormky.databinding.ItemHourlyBinding
 import com.example.stormky.model.Current
 
 class HourlyAdapter:ListAdapter<Current, HourlyAdapter.HourlyViewHolder>(DiffCallback) {
 
-    companion object DiffCallback: DiffUtil.ItemCallback<Current>(){
+    private companion object DiffCallback: DiffUtil.ItemCallback<Current>(){
         override fun areItemsTheSame(oldItem: Current, newItem: Current): Boolean {
             return oldItem.currentTime == newItem.currentTime
         }
@@ -22,7 +22,7 @@ class HourlyAdapter:ListAdapter<Current, HourlyAdapter.HourlyViewHolder>(DiffCal
         }
 
     }
-    class HourlyViewHolder(private var binding: HourlyItemBinding):
+    class HourlyViewHolder(private var binding: ItemHourlyBinding):
         RecyclerView.ViewHolder(binding.root){
             fun bind(current: Current, position: Int){
                 binding.hourly = current
@@ -40,7 +40,7 @@ class HourlyAdapter:ListAdapter<Current, HourlyAdapter.HourlyViewHolder>(DiffCal
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HourlyViewHolder {
-        return HourlyViewHolder(HourlyItemBinding.inflate(
+        return HourlyViewHolder(ItemHourlyBinding.inflate(
             LayoutInflater.from(parent.context),parent,false))
     }
 

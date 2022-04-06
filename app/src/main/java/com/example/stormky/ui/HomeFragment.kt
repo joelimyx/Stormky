@@ -57,7 +57,5 @@ class HomeFragment : Fragment() {
     }
     fun getWeatherInFrag(lat:Double, lon:Double){
         forecastViewModel.getWeatherByLoc(lat, lon)
-
-
     }
 }

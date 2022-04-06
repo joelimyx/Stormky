@@ -4,7 +4,11 @@ import com.squareup.moshi.*
 import java.text.SimpleDateFormat
 import java.util.*
 
-data class Forecast (val current:Current, @Json(name="hourly")val hourlyList: List<Current>)//, val daily: Daily, val alerts: Alerts)
+data class Forecast (
+    val current:Current,
+    @Json(name="hourly") val hourlyList: List<Current>,
+    @Json(name="daily")val dailyList: List<Daily>)
+    //, val alerts: Alerts)
 
 data class Current (
     @Json(name="dt")val currentTime: Long,
@@ -30,10 +34,6 @@ data class Weather(
     val icon: String
     )
 
-class Daily {
-
-}
-
 data class Rain(
     @Json(name = "1h")val last_hour: Double
 )
@@ -42,11 +42,32 @@ data class Snow(
     @Json(name = "1h")val last_hour: Double
 )
 
+data class Daily (
+    @Json(name="dt")val currentTime: Long,
+    val sunrise: Long,
+    val sunset: Long,
+    val temp: Temp,
+    val weather: List<Weather>,
+    val humidity: Int,
+    val wind_speed: Double,
+    val pop:Double,
+    val rain:Double?,
+    val snow:Double?,
+    val rainAndSnow:Double =
+        (rain ?:0.0) + (snow ?:0.0)
+    )
+
+class Temp {
+
+}
+
 class Alerts (
 
 )
 
 fun getFormattedTime(time:Long): String = SimpleDateFormat("h:mm a", Locale.getDefault()).format(Date(time*1000))
+
+fun getFormattedDay(time:Long): String = SimpleDateFormat("E", Locale.getDefault()).format(Date(time*1000))
 
 fun meterToMile(meter:Int):Double = meter.toDouble()/1609
 

@@ -1,13 +1,13 @@
 package com.example.stormky.ui.hourly
 
+import android.opengl.Visibility
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AnimationUtils
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import com.example.stormky.R
 import com.example.stormky.databinding.FragmentHourlyBinding
 import com.example.stormky.model.ForecastViewModel
 
@@ -28,7 +28,6 @@ class HourlyFragment : Fragment() {
     ): View {
 
         _binding = FragmentHourlyBinding.inflate(inflater, container, false)
-
         return binding.root
     }
 
@@ -38,13 +37,26 @@ class HourlyFragment : Fragment() {
         _binding?.apply {
             lifecycleOwner = viewLifecycleOwner
             viewModel = forecastViewModel
+            hourlyFragment = this@HourlyFragment
             recyclerView.adapter = HourlyAdapter()
-            //recyclerView.layoutAnimation = AnimationUtils.loadLayoutAnimation(requireContext(), R.anim.layout_anim)
+            dailyRecyclerView.adapter = DailyAdapter()
         }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+    fun switchList(){
+        Log.d("HourlyFragment", "switch list")
+        if (forecastViewModel.listSwitch.value == true){
+            forecastViewModel.toggleSwitch()
+            binding.recyclerView.visibility = View.INVISIBLE
+            binding.dailyRecyclerView.visibility = View.VISIBLE
+        }else{
+            forecastViewModel.toggleSwitch()
+            binding.dailyRecyclerView.visibility = View.INVISIBLE
+            binding.recyclerView.visibility = View.VISIBLE
+        }
     }
 }

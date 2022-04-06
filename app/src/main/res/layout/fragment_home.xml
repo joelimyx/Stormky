@@ -192,7 +192,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/merriweather"
-            android:text="@{@string/precipitation(viewModel.rainAndSnow)}"
+            android:text="@{@string/precipitation(viewModel.current.rainAndSnow)}"
             android:textColor="@color/black"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="@+id/uv_icon"
