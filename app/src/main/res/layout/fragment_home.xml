@@ -9,6 +9,7 @@
         <variable
             name="viewModel"
             type="com.example.stormky.model.ForecastViewModel" />
+
         <variable
             name="homeFragment"
             type="com.example.stormky.ui.HomeFragment" />
@@ -68,7 +69,7 @@
             android:layout_marginTop="32dp"
             app:layout_constraintStart_toEndOf="@+id/current_icon"
             app:layout_constraintTop_toTopOf="@+id/top_h_guide"
-            tools:text="Sunny"/>
+            tools:text="Sunny" />
 
         <TextView
             android:id="@+id/description_text"
@@ -283,7 +284,7 @@
             android:src="@drawable/ic_baseline_arrow_down_24"
             app:layout_constraintStart_toStartOf="@+id/imageView"
             app:layout_constraintTop_toBottomOf="@+id/wind_speed_text"
-            android:layout_marginTop="32dp"/>
+            android:layout_marginTop="32dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

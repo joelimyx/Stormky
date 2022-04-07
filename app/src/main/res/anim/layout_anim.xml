@@ -2,4 +2,4 @@
 <layoutAnimation xmlns:android="http://schemas.android.com/apk/res/android"
     android:animation="@anim/item_insert_anim"
     android:delay="18%"
-    android:animationOrder="normal"/>
+    android:animationOrder="normal" />
