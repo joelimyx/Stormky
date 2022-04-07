@@ -5,6 +5,7 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.stormky.R
+import com.example.stormky.model.Alert
 import com.example.stormky.model.Current
 import com.example.stormky.model.Daily
 import com.example.stormky.ui.hourly.DailyAdapter
@@ -31,5 +32,11 @@ fun bindHourlyRecyclerView(recyclerView: RecyclerView, data: List<Current>) {
 @BindingAdapter("listDaily")
 fun bindDailyRecyclerView(recyclerView: RecyclerView, data: List<Daily>) {
     val adapter = recyclerView.adapter as DailyAdapter
+    adapter.submitList(data)
+}
+
+@BindingAdapter("listAlert")
+fun bindAlertRecyclerView(recyclerView: RecyclerView, data: List<Alert>) {
+    val adapter = recyclerView.adapter as AlertAdapter
     adapter.submitList(data)
 }

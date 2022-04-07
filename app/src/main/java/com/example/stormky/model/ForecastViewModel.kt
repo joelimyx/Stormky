@@ -29,8 +29,11 @@ class ForecastViewModel : ViewModel() {
     private val _listSwitch = MutableLiveData(true)
     val listSwitch: LiveData<Boolean> = _listSwitch
 
+    private val _alertList = MutableLiveData<List<Alert>>()
+    val alertList: LiveData<List<Alert>> = _alertList
+
     init {
-        getWeatherByLoc(40.74, 73.98)
+        getWeatherByLoc(29.46, -98.58)
     }
 
     fun getWeatherByLoc(lat: Double, lon: Double) {
@@ -50,6 +53,9 @@ class ForecastViewModel : ViewModel() {
                 //daily
                 _dailyList.value = forecast.value!!.dailyList
 
+                if (forecast.value!!.alertList != null){
+                    _alertList.value = forecast.value!!.alertList!!
+                }
             } catch (e: Exception) {
                 throw e
             }

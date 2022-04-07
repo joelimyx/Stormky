@@ -7,9 +7,8 @@ import java.util.*
 data class Forecast(
     val current: Current,
     @Json(name = "hourly") val hourlyList: List<Current>,
-    @Json(name = "daily") val dailyList: List<Daily>
-)
-//, val alerts: Alerts)
+    @Json(name = "daily") val dailyList: List<Daily>,
+    @Json(name = "alerts")val alertList: List<Alert>?)
 
 data class Current(
     @Json(name = "dt") val currentTime: Long,
@@ -59,8 +58,17 @@ data class Daily(
 
 class Temp(val min: Double, val max: Double)
 
-class Alerts
+class Alert(
+    @Json(name = "sender_name") val senders: String,
+    val event: String,
+    val start: Long,
+    val end: Long,
+    val description: String,
+    val tags:List<String>
+)
 
+
+//Helper Functions
 fun getFormattedTime(time: Long): String =
     SimpleDateFormat("h:mm a", Locale.getDefault()).format(Date(time * 1000))
 

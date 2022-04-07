@@ -15,8 +15,11 @@
         <entry key="..\:/Users/Cfrogz/AndroidStudioProjects/Stormky/app/src/main/res/layout/fragment_dashboard.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Cfrogz/AndroidStudioProjects/Stormky/app/src/main/res/layout/fragment_home.xml" value="0.1" />
         <entry key="..\:/Users/Cfrogz/AndroidStudioProjects/Stormky/app/src/main/res/layout/fragment_hourly.xml" value="0.25" />
+        <entry key="..\:/Users/Cfrogz/AndroidStudioProjects/Stormky/app/src/main/res/layout/fragment_notifications.xml" value="0.17962962962962964" />
         <entry key="..\:/Users/Cfrogz/AndroidStudioProjects/Stormky/app/src/main/res/layout/hourly_item.xml" value="0.33" />
-        <entry key="..\:/Users/Cfrogz/AndroidStudioProjects/Stormky/app/src/main/res/layout/item_daily.xml" value="0.33" />
+        <entry key="..\:/Users/Cfrogz/AndroidStudioProjects/Stormky/app/src/main/res/layout/item_alert.xml" value="0.22" />
+        <entry key="..\:/Users/Cfrogz/AndroidStudioProjects/Stormky/app/src/main/res/layout/item_alerts.xml" value="0.1" />
+        <entry key="..\:/Users/Cfrogz/AndroidStudioProjects/Stormky/app/src/main/res/layout/item_daily.xml" value="0.5" />
         <entry key="..\:/Users/Cfrogz/AndroidStudioProjects/Stormky/app/src/main/res/layout/item_hourly.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Cfrogz/AndroidStudioProjects/Stormky/app/src/main/res/layout/item_temp.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Cfrogz/AndroidStudioProjects/Stormky/app/src/main/res/menu/bottom_nav_menu.xml" value="0.36666666666666664" />
