@@ -9,6 +9,7 @@
         <variable
             name="viewModel"
             type="com.example.stormky.model.ForecastViewModel" />
+
         <variable
             name="homeFragment"
             type="com.example.stormky.ui.HomeFragment" />
@@ -68,7 +69,7 @@
             android:layout_marginTop="32dp"
             app:layout_constraintStart_toEndOf="@+id/current_icon"
             app:layout_constraintTop_toTopOf="@+id/top_h_guide"
-            tools:text="Sunny"/>
+            tools:text="Sunny" />
 
         <TextView
             android:id="@+id/description_text"
@@ -130,7 +131,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/feels_icon"
             app:layout_constraintStart_toEndOf="@+id/feels_icon"
             app:layout_constraintTop_toTopOf="@+id/feels_icon"
-            tools:text="32F" />
+            tools:text="32\u00B0F" />
 
 
         <ImageView
@@ -188,11 +189,11 @@
             app:layout_constraintTop_toTopOf="@+id/humidity_icon" />
 
         <TextView
-            android:id="@+id/uvi_text"
+            android:id="@+id/precip_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/merriweather"
-            android:text="@{@string/precipitation(viewModel.rainAndSnow)}"
+            android:text="@{@string/precipitation(viewModel.current.rainAndSnow)}"
             android:textColor="@color/black"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="@+id/uv_icon"
@@ -283,7 +284,7 @@
             android:src="@drawable/ic_baseline_arrow_down_24"
             app:layout_constraintStart_toStartOf="@+id/imageView"
             app:layout_constraintTop_toBottomOf="@+id/wind_speed_text"
-            android:layout_marginTop="32dp"/>
+            android:layout_marginTop="32dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.stormky.model.ForecastViewModel" />
+
+        <variable
+            name="hourly"
+            type="com.example.stormky.model.Current" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        app:cardElevation="3dp"
+        app:cardCornerRadius="8dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp">
+
+            <ImageView
+                android:id="@+id/weather_item_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:iconUrl="@{hourly.weather[0].icon}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_baseline_wb_sunny_24" />
+
+            <TextView
+                android:id="@+id/main_item_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:layout_marginStart="8dp"
+                android:text="@{hourly.weather[0].main}"
+                app:layout_constraintBottom_toBottomOf="@+id/weather_item_icon"
+                app:layout_constraintStart_toEndOf="@+id/weather_item_icon"
+                app:layout_constraintTop_toTopOf="@+id/weather_item_icon"
+                tools:text="Sunny" />
+
+            <TextView
+                android:id="@+id/temp_item_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="@{@string/temp(hourly.temp)}"
+                app:layout_constraintStart_toEndOf="@+id/main_item_text"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="73\u00B0F" />
+
+            <TextView
+                android:id="@+id/precip_text_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="@{@string/precipitation(hourly.rainAndSnow)}"
+                app:layout_constraintEnd_toEndOf="@+id/prop_item_text"
+                app:layout_constraintStart_toStartOf="@+id/prop_item_text"
+                app:layout_constraintTop_toBottomOf="@+id/prop_item_text"
+                tools:text="1.54 in" />
+
+            <TextView
+                android:id="@+id/prop_item_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="@{@string/probability(hourly.pop*100)}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/temp_item_text"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Probability: 60%" />
+
+            <TextView
+                android:id="@+id/wind_item_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="@{@string/wind_speed(hourly.wind_speed)}"
+                app:layout_constraintStart_toEndOf="@+id/weather_item_icon"
+                app:layout_constraintTop_toBottomOf="@+id/main_item_text"
+                tools:text="16mph" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/hour_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="1H" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>

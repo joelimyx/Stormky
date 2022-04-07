@@ -22,15 +22,15 @@ private val retrofit = Retrofit.Builder()
 interface ForecastApiService {
     @GET("data/2.5/onecall")
     suspend fun getForecast(
-        @Query("lat") lat:Double,
+        @Query("lat") lat: Double,
         @Query("lon") lon: Double,
-        @Query("appid") appid:String = BuildConfig.KEY,
-        @Query("units") units:String,
-        @Query("exclude") exclude:String = "minutely"
+        @Query("appid") appid: String = BuildConfig.KEY,
+        @Query("units") units: String,
+        @Query("exclude") exclude: String = "minutely"
     ): Forecast
 }
 
-object ForecastApi{
+object ForecastApi {
     val retrofitService: ForecastApiService by lazy {
         retrofit.create(ForecastApiService::class.java)
     }

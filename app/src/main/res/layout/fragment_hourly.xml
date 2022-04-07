@@ -5,26 +5,61 @@
 
     <data>
 
+        <variable
+            name="hourlyFragment"
+            type="com.example.stormky.ui.hourly.HourlyFragment" />
+
+        <variable
+            name="viewModel"
+            type="com.example.stormky.model.ForecastViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.HourlyFragment">
+        tools:context=".ui.hourly.HourlyFragment">
 
-        <TextView
-            android:id="@+id/text_dashboard"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:textAlignment="center"
-            android:textSize="20sp"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:padding="8dp"
+            android:layout_marginBottom="56dp"
+            android:clipToPadding="false"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Hourly" />
+            app:listData="@{viewModel.hourlyList}"
+            app:spanCount="2"
+            android:layoutAnimation="@anim/layout_anim"
+            android:visibility="visible" />
+        <!--
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/daily_recycler_view"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:padding="8dp"
+                    android:layout_marginBottom="56dp"
+                    android:clipToPadding="false"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:listDaily="@{viewModel.dailyList}"
+                    app:spanCount="2"
+                    android:layoutAnimation="@anim/layout_anim" /> -->
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/switch_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/recycler_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_margin="16dp"
+            android:src="@drawable/ic_reverse_24"
+            android:contentDescription="Switch icon" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
