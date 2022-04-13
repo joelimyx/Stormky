@@ -3,6 +3,7 @@ package com.example.stormky.model
 import androidx.lifecycle.*
 import com.example.stormky.network.ForecastApi
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 class ForecastViewModel : ViewModel() {
 
@@ -29,11 +30,11 @@ class ForecastViewModel : ViewModel() {
     private val _listSwitch = MutableLiveData(true)
     val listSwitch: LiveData<Boolean> = _listSwitch
 
-    private val _alertList = MutableLiveData<List<Alert>>()
+    private val _alertList = MutableLiveData(listOf<Alert>())
     val alertList: LiveData<List<Alert>> = _alertList
 
     init {
-        getWeatherByLoc(29.46, -98.58)
+        getWeatherByLoc( 47.57, -101.93)
     }
 
     fun getWeatherByLoc(lat: Double, lon: Double) {
@@ -56,6 +57,7 @@ class ForecastViewModel : ViewModel() {
                 if (forecast.value!!.alertList != null){
                     _alertList.value = forecast.value!!.alertList!!
                 }
+
             } catch (e: Exception) {
                 throw e
             }
