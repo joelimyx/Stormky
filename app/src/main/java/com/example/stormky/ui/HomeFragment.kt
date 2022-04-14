@@ -5,15 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
-import androidx.core.app.NotificationCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.stormky.R
 import com.example.stormky.databinding.FragmentHomeBinding
 import com.example.stormky.model.ForecastViewModel
 import com.example.stormky.model.getFormattedTime
-import timber.log.Timber
 
 class HomeFragment : Fragment() {
 

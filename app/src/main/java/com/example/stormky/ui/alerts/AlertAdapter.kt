@@ -1,4 +1,4 @@
-package com.example.stormky.ui
+package com.example.stormky.ui.alerts
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.stormky.databinding.ItemAlertBinding
 import com.example.stormky.model.Alert
-import timber.log.Timber
 
 class AlertAdapter : ListAdapter<Alert, AlertAdapter.AlertViewHolder>(DiffCallback) {
 
@@ -27,8 +26,10 @@ class AlertAdapter : ListAdapter<Alert, AlertAdapter.AlertViewHolder>(DiffCallba
     class AlertViewHolder(private var binding: ItemAlertBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(alert: Alert) {
-            binding.alert = alert
-            binding.executePendingBindings()
+            binding.apply {
+                this.alert = alert
+                executePendingBindings()
+            }
         }
     }
 

@@ -1,15 +1,13 @@
-package com.example.stormky.ui
+package com.example.stormky.ui.alerts
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.stormky.databinding.FragmentAlertsBinding
 import com.example.stormky.model.ForecastViewModel
-import timber.log.Timber
 
 class AlertsFragment : Fragment() {
 

@@ -33,7 +33,7 @@
                 android:name="androidx.work.impl.WorkManagerInitializer"
                 android:value="androidx.startup"
                 tools:node="remove" />
-    </provider>
+        </provider>
 
     </application>
 

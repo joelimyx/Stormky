@@ -1,6 +1,8 @@
 package com.example.stormky.ui
 
+import android.text.TextUtils
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
@@ -8,6 +10,7 @@ import com.example.stormky.R
 import com.example.stormky.model.Alert
 import com.example.stormky.model.Current
 import com.example.stormky.model.Daily
+import com.example.stormky.ui.alerts.AlertAdapter
 import com.example.stormky.ui.hourly.DailyAdapter
 import com.example.stormky.ui.hourly.HourlyAdapter
 
@@ -39,4 +42,22 @@ fun bindDailyRecyclerView(recyclerView: RecyclerView, data: List<Daily>) {
 fun bindAlertRecyclerView(recyclerView: RecyclerView, data: List<Alert>) {
     val adapter = recyclerView.adapter as AlertAdapter
     adapter.submitList(data)
+}
+
+@BindingAdapter("expand")
+fun expandTextView(textView: TextView, expand: Boolean) {
+    when (expand) {
+        true -> {
+            textView.apply {
+                maxLines = 100
+                ellipsize = null
+            }
+        }
+        false -> {
+            textView.apply {
+                maxLines = 2
+                ellipsize = TextUtils.TruncateAt.END
+            }
+        }
+    }
 }

@@ -45,6 +45,7 @@ class HourlyFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
     fun switchList() {
         if (forecastViewModel.listSwitch.value == true) {
             forecastViewModel.toggleSwitch()

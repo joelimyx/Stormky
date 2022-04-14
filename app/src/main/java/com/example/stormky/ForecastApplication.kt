@@ -11,7 +11,7 @@ import timber.log.Timber
 import javax.inject.Inject
 
 @HiltAndroidApp
-class ForecastApplication: Application(), Configuration.Provider{
+class ForecastApplication : Application(), Configuration.Provider {
 
     @Inject
     lateinit var workerFactory: HiltWorkerFactory
@@ -19,8 +19,8 @@ class ForecastApplication: Application(), Configuration.Provider{
     override fun onCreate() {
         super.onCreate()
         Timber.plant(Timber.DebugTree())
-        val name = "channel name"
-        val descriptionText = "channel descrip"
+        val name = "Special Weather alert"
+        val descriptionText = "Notification for when there is a special weather alerts."
         val importance = NotificationManager.IMPORTANCE_DEFAULT
         val channel = NotificationChannel(CHANNEL_ID, name, importance).apply {
             description = descriptionText
