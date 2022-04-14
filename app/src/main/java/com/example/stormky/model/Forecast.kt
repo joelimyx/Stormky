@@ -63,12 +63,8 @@ class Alert(
     val event: String,
     val start: Long,
     val description: String,
-    var expand: Boolean = false
-) {
-    fun toggleExpand() {
-        expand = !expand
-    }
-}
+    var collapse: Boolean = true
+)
 
 //Helper Functions
 fun getFormattedTime(time: Long): String =

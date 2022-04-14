@@ -44,20 +44,3 @@ fun bindAlertRecyclerView(recyclerView: RecyclerView, data: List<Alert>) {
     adapter.submitList(data)
 }
 
-@BindingAdapter("expand")
-fun expandTextView(textView: TextView, expand: Boolean) {
-    when (expand) {
-        true -> {
-            textView.apply {
-                maxLines = 100
-                ellipsize = null
-            }
-        }
-        false -> {
-            textView.apply {
-                maxLines = 2
-                ellipsize = TextUtils.TruncateAt.END
-            }
-        }
-    }
-}

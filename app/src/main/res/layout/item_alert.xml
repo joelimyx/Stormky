@@ -15,9 +15,9 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/alert_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="@{()->alert.toggleExpand()}">
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/title_text"
@@ -31,18 +31,31 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Winter Storm Alert" />
 
+
         <TextView
-            android:padding="8dp"
             android:id="@+id/description_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:ellipsize="end"
+            android:maxLines="3"
+            android:padding="8dp"
+            android:text="@{alert.description}"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/title_text"
             app:layout_constraintTop_toBottomOf="@+id/title_text"
+            tools:text="@string/description_sample" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/description_text"
             app:layout_constraintEnd_toEndOf="parent"
-            android:text="@{alert.description}"
-            tools:text="@string/description_sample"
-            android:textSize="16sp"
-            app:expand="@{alert.expand}" />
+            app:srcCompat="@drawable/ic_baseline_expand_circle_down_24" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

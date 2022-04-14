@@ -1,6 +1,7 @@
 package com.example.stormky.ui.alerts
 
 import android.annotation.SuppressLint
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -25,9 +26,23 @@ class AlertAdapter : ListAdapter<Alert, AlertAdapter.AlertViewHolder>(DiffCallba
 
     class AlertViewHolder(private var binding: ItemAlertBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(alert: Alert) {
+        fun bind(unit: Alert) {
             binding.apply {
-                this.alert = alert
+                alertLayout.setOnClickListener {
+                    if (unit.collapse) {
+                        descriptionText.apply {
+                            maxLines = 100
+                            ellipsize = null
+                        }
+                    }else{
+                        descriptionText.apply {
+                            maxLines = 3
+                            ellipsize = TextUtils.TruncateAt.END
+                        }
+                    }
+                    unit.collapse = !unit.collapse
+                }
+                alert = unit
                 executePendingBindings()
             }
         }
