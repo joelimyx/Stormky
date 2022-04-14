@@ -25,8 +25,12 @@ class DailyAdapter : ListAdapter<Daily, DailyAdapter.DailyViewHolder>(DiffCallba
     class DailyViewHolder(private var binding: ItemDailyBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(daily: Daily) {
-            binding.dayText.text = getFormattedDay(daily.currentTime)
-            binding.executePendingBindings()
+            binding.apply {
+                this.daily = daily
+                dayText.text = getFormattedDay(daily.currentTime)
+                executePendingBindings()
+
+            }
         }
     }
 

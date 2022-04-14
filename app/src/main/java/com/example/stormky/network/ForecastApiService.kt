@@ -28,6 +28,15 @@ interface ForecastApiService {
         @Query("units") units: String,
         @Query("exclude") exclude: String = "minutely"
     ): Forecast
+
+    @GET("data/2.5/onecall")
+    suspend fun getAlertsOnly(
+        @Query("lat") lat: Double,
+        @Query("lon") lon: Double,
+        @Query("appid") appid: String = BuildConfig.KEY,
+        @Query("units") units: String,
+        @Query("exclude") exclude: String = "minutely, current, hourly, daily"
+    ): Forecast
 }
 
 object ForecastApi {

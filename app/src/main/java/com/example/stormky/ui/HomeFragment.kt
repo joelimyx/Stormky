@@ -36,6 +36,7 @@ class HomeFragment : Fragment() {
         forecastViewModel.current.observe(viewLifecycleOwner) {
             timeTextView.text = getString(R.string.current_time, getFormattedTime(it.currentTime))
         }
+
         return root
     }
 

@@ -2,7 +2,7 @@
     <string name="app_name">Stormky</string>
     <string name="title_home">Home</string>
     <string name="title_hourly">Hourly</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_alerts">Alerts</string>
     <string name="get_weather">Get Weather</string>
     <string name="temp">%.0f \u00B0F </string>
     <string name="feels_like"> %.0f \u00B0F </string>
@@ -16,4 +16,5 @@
     <string name="get_location">Get Location</string>
     <string name="weather_icon_text">Weather Icon</string>
     <string name="probability">Probability: %.0f%%</string>
+    <string name="description_sample">…BLIZZARD WARNING REMAINS IN EFFECT UNTIL 7 PM CDT/6 PM MDT/ THURSDAY… * WHAT…Heavy snow and blizzard conditions. Visibilities below ¼ mile. Storm total snow between 15 and 18 inches. Winds gusting as high as 50 mph with extensive blowing and drifting snow. Snow drifts as deep as 6 feet. * WHERE…Portions of northwest and central North Dakota. * WHEN…Until 7 PM CDT/6 PM MDT/ Thursday. * IMPACTS…Travel nearly impossible. Some tree limbs may be broken. Some power outages possible. PRECAUTIONARY/PREPAREDNESS ACTIONS… Travel should be restricted to emergencies only. If you must travel, have a winter survival kit with you. Notify a friend or family member of your travel plans. If you get stranded, stay with your vehicle. Check the North Dakota Department of Transportation road report!</string>
 </resources>

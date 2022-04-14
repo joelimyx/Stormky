@@ -37,7 +37,7 @@ class HourlyFragment : Fragment() {
             viewModel = forecastViewModel
             hourlyFragment = this@HourlyFragment
             recyclerView.adapter = HourlyAdapter()
-//            dailyRecyclerView.adapter = DailyAdapter()
+            dailyRecyclerView.adapter = DailyAdapter()
         }
     }
 
@@ -45,17 +45,16 @@ class HourlyFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-    /**
+
     fun switchList() {
-    if (forecastViewModel.listSwitch.value == true) {
-    forecastViewModel.toggleSwitch()
-    binding.recyclerView.visibility = View.INVISIBLE
-    binding.dailyRecyclerView.visibility = View.VISIBLE
-    } else {
-    forecastViewModel.toggleSwitch()
-    binding.dailyRecyclerView.visibility = View.INVISIBLE
-    binding.recyclerView.visibility = View.VISIBLE
+        if (forecastViewModel.listSwitch.value == true) {
+            forecastViewModel.toggleSwitch()
+            binding.recyclerView.visibility = View.INVISIBLE
+            binding.dailyRecyclerView.visibility = View.VISIBLE
+        } else {
+            forecastViewModel.toggleSwitch()
+            binding.dailyRecyclerView.visibility = View.INVISIBLE
+            binding.recyclerView.visibility = View.VISIBLE
+        }
     }
-    }
-     **/
 }
