@@ -18,7 +18,6 @@ class ForecastApplication : Application(), Configuration.Provider {
 
     override fun onCreate() {
         super.onCreate()
-        Timber.plant(Timber.DebugTree())
         val name = "Special Weather alert"
         val descriptionText = "Notification for when there is a special weather alerts."
         val importance = NotificationManager.IMPORTANCE_DEFAULT

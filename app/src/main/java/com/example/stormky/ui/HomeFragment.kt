@@ -11,6 +11,10 @@ import com.example.stormky.R
 import com.example.stormky.databinding.FragmentHomeBinding
 import com.example.stormky.model.ForecastViewModel
 import com.example.stormky.model.getFormattedTime
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationRequest
+import com.google.android.gms.location.LocationServices
+import com.google.android.gms.tasks.CancellationToken
 
 class HomeFragment : Fragment() {
 
@@ -21,6 +25,8 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val forecastViewModel: ForecastViewModel by activityViewModels()
+
+    private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -48,7 +54,7 @@ class HomeFragment : Fragment() {
             lifecycleOwner = viewLifecycleOwner
             homeFragment = this@HomeFragment
         }
-
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireContext())
     }
 
     override fun onDestroyView() {
