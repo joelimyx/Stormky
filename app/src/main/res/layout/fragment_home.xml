@@ -254,7 +254,7 @@
             android:layout_gravity="bottom|end"
             android:layout_margin="16dp"
             android:contentDescription="@string/get_location"
-            android:onClick="@{()->homeFragment.getWeatherInFrag(40.47, -88.99)}"
+            android:onClick="@{()->homeFragment.getWeatherInFrag()}"
             android:src="@drawable/ic_outline_my_location_24"
             app:layout_constraintBottom_toTopOf="@+id/bottom_h_guide"
             app:layout_constraintEnd_toEndOf="parent" />
@@ -264,7 +264,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_end="64dp" />
+            app:layout_constraintGuide_end="64dp"/>
 
         <ImageView
             android:id="@+id/imageView"
