@@ -1,5 +1,7 @@
 package com.example.stormky.ui
 
+import android.annotation.SuppressLint
+import android.location.Location
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,7 +17,10 @@ import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.tasks.CancellationToken
+import com.google.android.gms.tasks.CancellationTokenSource
+import timber.log.Timber
 
+@SuppressLint("MissingPermission")
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
@@ -26,8 +31,9 @@ class HomeFragment : Fragment() {
 
     private val forecastViewModel: ForecastViewModel by activityViewModels()
 
-    private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
+    private lateinit var location: Location
 
+    @SuppressLint("MissingPermission")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -54,7 +60,7 @@ class HomeFragment : Fragment() {
             lifecycleOwner = viewLifecycleOwner
             homeFragment = this@HomeFragment
         }
-        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireContext())
+
     }
 
     override fun onDestroyView() {
@@ -62,7 +68,12 @@ class HomeFragment : Fragment() {
         _binding = null
     }
 
-    fun getWeatherInFrag(lat: Double, lon: Double) {
-        forecastViewModel.getWeatherByLoc(lat, lon)
+    fun getWeatherInFrag() {
+
+        LocationServices.getFusedLocationProviderClient(requireContext()).lastLocation.addOnSuccessListener {
+            location = it
+        }
+
+        forecastViewModel.getWeatherByLoc(location.latitude, location.longitude)
     }
 }

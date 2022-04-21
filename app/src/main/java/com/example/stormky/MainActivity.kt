@@ -30,13 +30,15 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
-    private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
+    lateinit var fusedLocationProviderClient: FusedLocationProviderClient
 
-    @SuppressLint("MissingPermission")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         Timber.plant(Timber.DebugTree())
+
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
+        getLocation()
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         supportActionBar?.hide()
@@ -56,23 +58,12 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
-
-        getLocation()
     }
 
     override fun onStart() {
         super.onStart()
 
 //        startWork()
-    }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
 
     fun startWork() {
@@ -149,4 +140,5 @@ class MainActivity : AppCompatActivity() {
         mockLocation.longitude = -119.78
         fusedLocationProviderClient.setMockLocation(mockLocation)
     }
+
 }
