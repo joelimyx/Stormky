@@ -55,6 +55,8 @@ class ForecastViewModel : ViewModel() {
 
                 if (forecast.value!!.alertList != null) {
                     _alertList.value = forecast.value!!.alertList!!
+                }else{
+                    _alertList.value = listOf()
                 }
 
             } catch (e: Exception) {

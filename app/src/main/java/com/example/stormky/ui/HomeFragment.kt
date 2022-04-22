@@ -31,9 +31,6 @@ class HomeFragment : Fragment() {
 
     private val forecastViewModel: ForecastViewModel by activityViewModels()
 
-    private lateinit var location: Location
-
-    @SuppressLint("MissingPermission")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -71,9 +68,7 @@ class HomeFragment : Fragment() {
     fun getWeatherInFrag() {
 
         LocationServices.getFusedLocationProviderClient(requireContext()).lastLocation.addOnSuccessListener {
-            location = it
+            forecastViewModel.getWeatherByLoc(it.latitude, it.longitude)
         }
-
-        forecastViewModel.getWeatherByLoc(location.latitude, location.longitude)
     }
 }
