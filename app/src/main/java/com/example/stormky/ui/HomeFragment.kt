@@ -1,11 +1,11 @@
 package com.example.stormky.ui
 
 import android.annotation.SuppressLint
-import android.location.Location
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.TranslateAnimation
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -13,12 +13,9 @@ import com.example.stormky.R
 import com.example.stormky.databinding.FragmentHomeBinding
 import com.example.stormky.model.ForecastViewModel
 import com.example.stormky.model.getFormattedTime
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationServices
-import com.google.android.gms.tasks.CancellationToken
-import com.google.android.gms.tasks.CancellationTokenSource
 import timber.log.Timber
+
 
 @SuppressLint("MissingPermission")
 class HomeFragment : Fragment() {
@@ -31,9 +28,6 @@ class HomeFragment : Fragment() {
 
     private val forecastViewModel: ForecastViewModel by activityViewModels()
 
-    private lateinit var location: Location
-
-    @SuppressLint("MissingPermission")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -47,6 +41,12 @@ class HomeFragment : Fragment() {
 
         forecastViewModel.current.observe(viewLifecycleOwner) {
             timeTextView.text = getString(R.string.current_time, getFormattedTime(it.currentTime))
+            val uvPercent = 780*(it.uvi).div(10)
+            Timber.i("UV: ${it.uvi} Percent: $uvPercent")
+            val animation = TranslateAnimation(0F, (uvPercent).toFloat(), 0F, 0F)
+            animation.duration = 2000
+            animation.fillAfter = true
+            binding.uvArrowIcon.startAnimation(animation)
         }
 
         return root
@@ -55,10 +55,17 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+//        val uvPercent = (forecastViewModel.current.value?.uvi)!!.div(10)
+        val animation = TranslateAnimation(0F, 780F, 0F, 0F)
+        animation.duration = 2000
+        animation.fillAfter = true
+
         _binding?.apply {
             viewModel = forecastViewModel
             lifecycleOwner = viewLifecycleOwner
             homeFragment = this@HomeFragment
+
+//            uvArrowIcon.startAnimation(animation)
         }
 
     }
@@ -71,9 +78,7 @@ class HomeFragment : Fragment() {
     fun getWeatherInFrag() {
 
         LocationServices.getFusedLocationProviderClient(requireContext()).lastLocation.addOnSuccessListener {
-            location = it
+            forecastViewModel.getWeatherByLoc(it.latitude, it.longitude)
         }
-
-        forecastViewModel.getWeatherByLoc(location.latitude, location.longitude)
     }
 }

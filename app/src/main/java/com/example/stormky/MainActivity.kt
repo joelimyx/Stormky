@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.os.Looper
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.navigation.findNavController
@@ -17,6 +18,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.work.*
 import com.example.stormky.databinding.ActivityMainBinding
+import com.example.stormky.model.ForecastViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -29,8 +31,10 @@ import java.util.concurrent.TimeUnit
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var navView: BottomNavigationView
 
     lateinit var fusedLocationProviderClient: FusedLocationProviderClient
+    private val viewModel: ForecastViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,25 +49,24 @@ class MainActivity : AppCompatActivity() {
         DynamicColors.applyToActivitiesIfAvailable(application)
         setContentView(binding.root)
 
-        val navView: BottomNavigationView = binding.navView
+         navView = binding.navView
 
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        val appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.navigation_home, R.id.navigation_hourly, R.id.navigation_alerts
-            )
-        )
-        setupActionBarWithNavController(navController, appBarConfiguration)
-        navView.setupWithNavController(navController)
 
+        navView.setupWithNavController(navController)
     }
 
     override fun onStart() {
         super.onStart()
 
 //        startWork()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.alertList.observe(this){
+            navView.getOrCreateBadge(R.id.navigation_alerts).isVisible = it.isNotEmpty()
+        }
     }
 
     fun startWork() {
