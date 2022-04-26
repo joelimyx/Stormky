@@ -6,6 +6,7 @@ import android.app.NotificationManager
 import android.content.Context
 import androidx.hilt.work.HiltWorkerFactory
 import androidx.work.Configuration
+import com.google.android.material.color.DynamicColors
 import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
 import javax.inject.Inject
@@ -18,6 +19,8 @@ class ForecastApplication : Application(), Configuration.Provider {
 
     override fun onCreate() {
         super.onCreate()
+        DynamicColors.applyToActivitiesIfAvailable(this)
+
         val name = "Special Weather alert"
         val descriptionText = "Notification for when there is a special weather alerts."
         val importance = NotificationManager.IMPORTANCE_DEFAULT
