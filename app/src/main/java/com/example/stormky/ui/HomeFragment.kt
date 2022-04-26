@@ -41,8 +41,8 @@ class HomeFragment : Fragment() {
 
         forecastViewModel.current.observe(viewLifecycleOwner) {
             timeTextView.text = getString(R.string.current_time, getFormattedTime(it.currentTime))
+
             val uvPercent = 780*(it.uvi).div(10)
-            Timber.i("UV: ${it.uvi} Percent: $uvPercent")
             val animation = TranslateAnimation(0F, (uvPercent).toFloat(), 0F, 0F)
             animation.duration = 2000
             animation.fillAfter = true
@@ -55,17 +55,10 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        val uvPercent = (forecastViewModel.current.value?.uvi)!!.div(10)
-        val animation = TranslateAnimation(0F, 780F, 0F, 0F)
-        animation.duration = 2000
-        animation.fillAfter = true
-
         _binding?.apply {
             viewModel = forecastViewModel
             lifecycleOwner = viewLifecycleOwner
             homeFragment = this@HomeFragment
-
-//            uvArrowIcon.startAnimation(animation)
         }
 
     }
