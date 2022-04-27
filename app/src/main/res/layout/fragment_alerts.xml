@@ -28,7 +28,20 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginBottom="56dp"
+            android:layout_marginBottom="@dimen/bottom_nav_height"
             app:listAlert="@{viewModel.alertList}" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="80sp"
+            app:alertStatus="@{viewModel.alertSize}"
+            app:layout_constraintBottom_toBottomOf="@+id/recycler_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="THERE IS NO ALERT :)"
+            tools:text="THERE IS NO ALERT :)" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

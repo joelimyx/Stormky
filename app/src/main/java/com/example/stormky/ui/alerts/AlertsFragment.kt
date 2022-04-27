@@ -25,7 +25,6 @@ class AlertsFragment : Fragment() {
     ): View {
 
         _binding = FragmentAlertsBinding.inflate(inflater, container, false)
-
         return binding.root
     }
 

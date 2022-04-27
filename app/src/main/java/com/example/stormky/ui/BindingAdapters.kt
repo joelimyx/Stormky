@@ -1,6 +1,6 @@
 package com.example.stormky.ui
 
-import android.text.TextUtils
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
@@ -13,6 +13,7 @@ import com.example.stormky.model.Daily
 import com.example.stormky.ui.alerts.AlertAdapter
 import com.example.stormky.ui.hourly.DailyAdapter
 import com.example.stormky.ui.hourly.HourlyAdapter
+import timber.log.Timber
 
 
 @BindingAdapter("iconUrl")
@@ -44,3 +45,11 @@ fun bindAlertRecyclerView(recyclerView: RecyclerView, data: List<Alert>) {
     adapter.submitList(data)
 }
 
+@BindingAdapter("alertStatus")
+fun alertStatus(noAlertText: TextView, size:Int){
+    if (size < 1) {
+        noAlertText.visibility = View.VISIBLE
+    } else {
+        noAlertText.visibility = View.INVISIBLE
+    }
+}
