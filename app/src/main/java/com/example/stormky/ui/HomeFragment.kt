@@ -37,18 +37,6 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val timeTextView: TextView = binding.timeText
-
-        forecastViewModel.current.observe(viewLifecycleOwner) {
-            timeTextView.text = getString(R.string.current_time, getFormattedTime(it.currentTime))
-
-            val uvPercent = 780*(it.uvi).div(10)
-            val animation = TranslateAnimation(0F, (uvPercent).toFloat(), 0F, 0F)
-            animation.duration = 2000
-            animation.fillAfter = true
-            binding.uvArrowIcon.startAnimation(animation)
-        }
-
         return root
     }
 
@@ -60,7 +48,22 @@ class HomeFragment : Fragment() {
             lifecycleOwner = viewLifecycleOwner
             homeFragment = this@HomeFragment
         }
+    }
 
+    override fun onStart() {
+        super.onStart()
+
+        forecastViewModel.current.observe(viewLifecycleOwner) {
+            binding.timeText.text = getString(R.string.current_time, getFormattedTime(it.currentTime))
+
+            val uvPercent = binding.uvScaleImage.width*(it.uvi).div(10)
+            Timber.i("Cont_X:${binding.uvScaleImage.width} UV: ${it.uvi}")
+
+            val animation = TranslateAnimation(0F, (uvPercent).toFloat(), 0F, 0F)
+            animation.duration = 2000
+            animation.fillAfter = true
+            binding.uvArrowIcon.startAnimation(animation)
+        }
     }
 
     override fun onDestroyView() {
