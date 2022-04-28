@@ -1,4 +1,4 @@
 # STORMKY   
 
-## A weather app with Material Design 3
+## A weather app written in Kotlin with Material Design 3
 
