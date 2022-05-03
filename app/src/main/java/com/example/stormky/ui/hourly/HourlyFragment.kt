@@ -57,4 +57,11 @@ class HourlyFragment : Fragment() {
             binding.recyclerView.visibility = View.VISIBLE
         }
     }
+    fun scrollToTop(){
+        if (forecastViewModel.listSwitch.value == true) {
+            binding.recyclerView.scrollToPosition(0)
+        }else{
+            binding.dailyRecyclerView.scrollToPosition(0)
+        }
+    }
 }

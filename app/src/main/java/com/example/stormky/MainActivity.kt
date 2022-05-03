@@ -19,6 +19,8 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.work.*
 import com.example.stormky.databinding.ActivityMainBinding
 import com.example.stormky.model.ForecastViewModel
+import com.example.stormky.ui.HomeFragment
+import com.example.stormky.ui.hourly.HourlyFragment
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -54,11 +56,21 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
 
         navView.setupWithNavController(navController)
+
     }
 
     override fun onStart() {
         super.onStart()
 
+        navView.setOnItemReselectedListener {
+            when(it.itemId){
+                R.id.navigation_hourly->{
+                    val navHost = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_main)
+                    val hourFrag = navHost?.childFragmentManager?.fragments?.get(0) as HourlyFragment
+                    hourFrag.scrollToTop()
+                }
+            }
+        }
 //        startWork()
     }
 
