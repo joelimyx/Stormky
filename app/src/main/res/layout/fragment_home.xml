@@ -16,9 +16,12 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/home_constraint"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingTop="?attr/actionBarSize">
+        android:paddingTop="?attr/actionBarSize"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp">
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/mid_v_guide"
@@ -34,19 +37,7 @@
             android:orientation="horizontal"
             app:layout_constraintGuide_percent=".05" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/left_v_guide"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_begin="24dp" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/right_v_guide"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_end="24dp" />
 
         <ImageView
             android:id="@+id/current_icon"
@@ -56,7 +47,7 @@
             android:contentDescription="@string/weather_icon_text"
             app:iconUrl="@{viewModel.weather[0].icon}"
             app:layout_constraintBottom_toBottomOf="@+id/current_text"
-            app:layout_constraintStart_toStartOf="@+id/left_v_guide"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/current_text" />
 
         <TextView
@@ -88,7 +79,7 @@
             android:padding="8dp"
             android:text="@{@string/temp(viewModel.current.temp)}"
             android:textSize="28sp"
-            app:layout_constraintStart_toStartOf="@+id/left_v_guide"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/description_text"
             tools:text="Temp: 35F" />
 
@@ -111,7 +102,7 @@
             android:layout_marginTop="16dp"
             android:padding="8dp"
             android:src="@drawable/ic_baseline_thermostat_24"
-            app:layout_constraintStart_toStartOf="@+id/left_v_guide"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/temp_text" />
 
         <TextView
@@ -153,7 +144,7 @@
             android:layout_marginTop="32dp"
             android:padding="8dp"
             android:src="@drawable/ic_opacity_black_24dp"
-            app:layout_constraintStart_toStartOf="@+id/left_v_guide"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/feels_icon" />
 
         <TextView
@@ -194,7 +185,7 @@
             android:layout_marginTop="32dp"
             android:padding="8dp"
             android:src="@drawable/ic_baseline_air_24"
-            app:layout_constraintStart_toStartOf="@+id/left_v_guide"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/humidity_icon" />
 
         <TextView
@@ -216,7 +207,7 @@
             android:src="@drawable/ic_baseline_visibility_24"
             app:layout_constraintStart_toStartOf="@+id/mid_v_guide"
             app:layout_constraintTop_toTopOf="@+id/wind_icon"
-            android:contentDescription="wind_icon" />
+            android:contentDescription="visibility_icon" />
 
         <TextView
             android:id="@+id/visibility_text"
@@ -243,27 +234,25 @@
 
         <LinearLayout
             android:id="@+id/uv_container"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:minWidth="300dp"
             android:orientation="vertical"
-            android:layout_marginEnd="8dp"
-            app:layout_constraintEnd_toStartOf="@+id/right_v_guide"
-            app:layout_constraintStart_toStartOf="@+id/left_v_guide"
-            app:layout_constraintTop_toBottomOf="@+id/wind_speed_text"
-            >
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/wind_speed_text">
 
             <ImageView
                 android:id="@+id/uv_arrow_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_baseline_arrow_down_24"/>
+                android:src="@drawable/ic_baseline_arrow_down_24" />
 
             <ImageView
                 android:id="@+id/uv_scale_image"
                 android:layout_width="match_parent"
-                android:layout_height="20dp"
+                android:layout_height="10dp"
                 android:layout_marginStart="12dp"
                 android:layout_marginEnd="12dp"
                 android:src="@drawable/gradient_drawable" />
@@ -280,77 +269,87 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="0"/>
+                    android:text="0" />
+
                 <TextView
                     android:id="@+id/uv_1_text"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="1"/>
+                    android:text="1" />
+
                 <TextView
                     android:id="@+id/uv_2_text"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="2"/>
+                    android:text="2" />
+
                 <TextView
                     android:id="@+id/uv_3_text"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="3"/>
+                    android:text="3" />
+
                 <TextView
                     android:id="@+id/uv_4_text"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="4"/>
+                    android:text="4" />
+
                 <TextView
                     android:id="@+id/uv_5_text"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="5"/>
+                    android:text="5" />
+
                 <TextView
                     android:id="@+id/uv_6_text"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="6"/>
+                    android:text="6" />
+
                 <TextView
                     android:id="@+id/uv_7_text"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="7"/>
+                    android:text="7" />
+
                 <TextView
                     android:id="@+id/uv_8_text"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="8"/>
+                    android:text="8" />
+
                 <TextView
                     android:id="@+id/uv_9_text"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="9"/>
+                    android:text="9" />
+
                 <TextView
                     android:id="@+id/uv_10_text"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="10"/>
+                    android:text="10" />
             </LinearLayout>
         </LinearLayout>
 

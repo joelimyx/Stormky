@@ -2,11 +2,13 @@ package com.example.stormky.ui
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.TranslateAnimation
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.stormky.R
@@ -14,6 +16,8 @@ import com.example.stormky.databinding.FragmentHomeBinding
 import com.example.stormky.model.ForecastViewModel
 import com.example.stormky.model.getFormattedTime
 import com.google.android.gms.location.LocationServices
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.snackbar.Snackbar
 import timber.log.Timber
 
 
@@ -75,6 +79,9 @@ class HomeFragment : Fragment() {
 
         LocationServices.getFusedLocationProviderClient(requireContext()).lastLocation.addOnSuccessListener {
             forecastViewModel.getWeatherByLoc(it.latitude, it.longitude)
+
+            Toast.makeText(requireContext(), "Location Updated", Toast.LENGTH_SHORT)
+                .show()
         }
     }
 }
