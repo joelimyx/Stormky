@@ -61,7 +61,7 @@ class HomeFragment : Fragment() {
             binding.timeText.text = getString(R.string.current_time, getFormattedTime(it.currentTime))
 
             val uvPercent = binding.uvScaleImage.width*(it.uvi).div(10)
-            Timber.i("Cont_X:${binding.uvScaleImage.width} UV: ${it.uvi}")
+//            Timber.i("Cont_X:${binding.uvScaleImage.width} UV: ${it.uvi}")
 
             val animation = TranslateAnimation(0F, (uvPercent).toFloat(), 0F, 0F)
             animation.duration = 2000

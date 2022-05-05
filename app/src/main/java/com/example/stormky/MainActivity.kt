@@ -2,6 +2,7 @@ package com.example.stormky
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import android.location.LocationRequest
@@ -57,6 +58,9 @@ class MainActivity : AppCompatActivity() {
 
         navView.setupWithNavController(navController)
 
+        if (intent?.extras != null) {
+            Timber.i(intent.extras!!.getString("daily"))
+        }
     }
 
     override fun onStart() {
@@ -71,7 +75,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-//        startWork()
+        startWork()
     }
 
     override fun onResume() {
@@ -79,7 +83,13 @@ class MainActivity : AppCompatActivity() {
         viewModel.alertList.observe(this){
             navView.getOrCreateBadge(R.id.navigation_alerts).isVisible = it.isNotEmpty()
         }
+
+        //TODO Try to grab intent
+        if (intent?.extras != null) {
+            Timber.i(intent.extras!!.getString("daily"))
+        }
     }
+
 
     fun startWork() {
         val workManager = WorkManager.getInstance(this)
@@ -93,7 +103,7 @@ class MainActivity : AppCompatActivity() {
             .putDouble(FetchDataWorker.lonKey, -98.87)
             .build()
 
-        val periodicWork = PeriodicWorkRequestBuilder<FetchDataWorker>(30, TimeUnit.SECONDS)
+        val periodicWork = PeriodicWorkRequestBuilder<FetchDataWorker>(2, TimeUnit.HOURS)
             .setConstraints(constraints)
             .setInputData(alertData)
             .setInitialDelay(10, TimeUnit.SECONDS)
