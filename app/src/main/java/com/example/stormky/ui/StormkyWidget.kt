@@ -45,12 +45,8 @@ internal fun updateAppWidget(
     appWidgetManager: AppWidgetManager,
     appWidgetId: Int
 ) {
-    val widgetText = context.getString(R.string.appwidget_text)
 
     val hourlyIntent = Intent(context, MainActivity::class.java)
-        .putExtra("daily","From Widget")
-        .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-        .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
 
     val pendingIntent:PendingIntent = PendingIntent.getActivity(
         context,

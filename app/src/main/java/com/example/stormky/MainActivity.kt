@@ -58,9 +58,6 @@ class MainActivity : AppCompatActivity() {
 
         navView.setupWithNavController(navController)
 
-        if (intent?.extras != null) {
-            Timber.i(intent.extras!!.getString("daily"))
-        }
     }
 
     override fun onStart() {
@@ -84,12 +81,15 @@ class MainActivity : AppCompatActivity() {
             navView.getOrCreateBadge(R.id.navigation_alerts).isVisible = it.isNotEmpty()
         }
 
-        //TODO Try to grab intent
-        if (intent?.extras != null) {
-            Timber.i(intent.extras!!.getString("daily"))
-        }
     }
 
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+
+        if (intent?.extras != null) {
+            findNavController(R.id.nav_host_fragment_activity_main).navigate(R.id.navigation_hourly)
+        }
+    }
 
     fun startWork() {
         val workManager = WorkManager.getInstance(this)
