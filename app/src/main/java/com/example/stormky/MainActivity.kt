@@ -5,22 +5,18 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
-import android.location.LocationRequest
 import android.os.Bundle
-import android.os.Looper
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import androidx.work.*
 import com.example.stormky.databinding.ActivityMainBinding
 import com.example.stormky.model.ForecastViewModel
-import com.example.stormky.ui.HomeFragment
 import com.example.stormky.ui.hourly.HourlyFragment
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -34,7 +30,8 @@ import java.util.concurrent.TimeUnit
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private lateinit var navView: BottomNavigationView
+    private lateinit var bottomNavView: BottomNavigationView
+    private lateinit var navController: NavController
 
     lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     private val viewModel: ForecastViewModel by viewModels()
@@ -52,18 +49,19 @@ class MainActivity : AppCompatActivity() {
         DynamicColors.applyToActivitiesIfAvailable(application)
         setContentView(binding.root)
 
-         navView = binding.navView
+        bottomNavView = binding.navView
 
-        val navController = findNavController(R.id.nav_host_fragment_activity_main)
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_main) as NavHostFragment
+        navController = navHostFragment.navController
 
-        navView.setupWithNavController(navController)
+        bottomNavView.setupWithNavController(navController)
 
     }
 
     override fun onStart() {
         super.onStart()
 
-        navView.setOnItemReselectedListener {
+        bottomNavView.setOnItemReselectedListener {
             when(it.itemId){
                 R.id.navigation_hourly->{
                     val navHost = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_main)
@@ -78,7 +76,7 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         viewModel.alertList.observe(this){
-            navView.getOrCreateBadge(R.id.navigation_alerts).isVisible = it.isNotEmpty()
+            bottomNavView.getOrCreateBadge(R.id.navigation_alerts).isVisible = it.isNotEmpty()
         }
 
     }
@@ -87,7 +85,9 @@ class MainActivity : AppCompatActivity() {
         super.onNewIntent(intent)
 
         if (intent?.extras != null) {
-            findNavController(R.id.nav_host_fragment_activity_main).navigate(R.id.navigation_hourly)
+            Timber.i((intent.extras.toString()))
+            navController.navigate(R.id.action_widget_to_hourly)
+
         }
     }
 
@@ -99,11 +99,11 @@ class MainActivity : AppCompatActivity() {
             .build()
 
         val alertData = Data.Builder()
-            .putDouble(FetchDataWorker.latKey, 40.39)
-            .putDouble(FetchDataWorker.lonKey, -98.87)
+            .putDouble(FetchDataWorker.latKey, 35.08)
+            .putDouble(FetchDataWorker.lonKey, -106.11)
             .build()
 
-        val periodicWork = PeriodicWorkRequestBuilder<FetchDataWorker>(2, TimeUnit.HOURS)
+        val periodicWork = PeriodicWorkRequestBuilder<FetchDataWorker>(2, TimeUnit.SECONDS)
             .setConstraints(constraints)
             .setInputData(alertData)
             .setInitialDelay(10, TimeUnit.SECONDS)
@@ -156,6 +156,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
     @SuppressLint("MissingPermission")
     fun mockLocation(){
 

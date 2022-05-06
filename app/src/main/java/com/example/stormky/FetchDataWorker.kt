@@ -34,7 +34,7 @@ class FetchDataWorker @AssistedInject constructor(
             val alertPendingIntent =
                 NavDeepLinkBuilder(applicationContext)
                     .setGraph(R.navigation.mobile_navigation)
-                    .setDestination(R.id.navigation_alerts)
+                    .setDestination(R.id.action_notif_to_alerts)
                     .createPendingIntent()
 
             val builder =
@@ -54,8 +54,11 @@ class FetchDataWorker @AssistedInject constructor(
                 with(NotificationManagerCompat.from(applicationContext)) {
                     notify(1, builder.build())
                 }
-            }
 
+            }
+            with(NotificationManagerCompat.from(applicationContext)) {
+                notify(1, builder.build())
+            }
             return Result.success(outputData)
         } catch (e: Error) {
             val errorData = Data.Builder()

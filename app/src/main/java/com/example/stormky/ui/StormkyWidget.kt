@@ -6,11 +6,9 @@ import android.appwidget.AppWidgetProvider
 import android.content.Context
 import android.content.Intent
 import android.os.Build
-import android.widget.GridView
+import android.os.Bundle
 import android.widget.RemoteViews
-import android.widget.RemoteViewsService
 import androidx.annotation.RequiresApi
-import androidx.navigation.NavDeepLinkBuilder
 import com.example.stormky.MainActivity
 import com.example.stormky.R
 
@@ -46,7 +44,9 @@ internal fun updateAppWidget(
     appWidgetId: Int
 ) {
 
-    val hourlyIntent = Intent(context, MainActivity::class.java)
+    val hourlyIntent = Intent(context, MainActivity::class.java).apply {
+        putExtra("Widget", "From Widget")
+    }
 
     val pendingIntent:PendingIntent = PendingIntent.getActivity(
         context,
@@ -55,7 +55,7 @@ internal fun updateAppWidget(
         PendingIntent.FLAG_IMMUTABLE)
 
     // Construct the RemoteViews object
-    val views = RemoteViews(context.packageName, R.layout.stormky_widget)
+    val views = RemoteViews(context.packageName, R.layout.widget_layout)
 
     views.setOnClickPendingIntent(R.id.widget_container, pendingIntent)
 
