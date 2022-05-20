@@ -61,6 +61,8 @@ class MainActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
 
+        Timber.i("onStart: ${intent?.extras.toString()}")
+
         bottomNavView.setOnItemReselectedListener {
             when(it.itemId){
                 R.id.navigation_hourly->{
@@ -83,11 +85,13 @@ class MainActivity : AppCompatActivity() {
 
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
+        intentToHourly(intent)
+    }
 
+    fun intentToHourly(intent: Intent?){
         if (intent?.extras != null) {
             Timber.i((intent.extras.toString()))
             navController.navigate(R.id.action_widget_to_hourly)
-
         }
     }
 

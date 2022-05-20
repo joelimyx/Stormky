@@ -1,4 +1,4 @@
-package com.example.stormky.ui
+package com.example.stormky.ui.widget
 
 import android.app.PendingIntent
 import android.appwidget.AppWidgetManager
@@ -46,6 +46,7 @@ internal fun updateAppWidget(
 
     val hourlyIntent = Intent(context, MainActivity::class.java).apply {
         putExtra("Widget", "From Widget")
+        flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
     }
 
     val pendingIntent:PendingIntent = PendingIntent.getActivity(
@@ -57,6 +58,7 @@ internal fun updateAppWidget(
     // Construct the RemoteViews object
     val views = RemoteViews(context.packageName, R.layout.widget_layout)
 
+//    views.setEmptyView(R.id.grid_widget, R.id.text_widget)
     views.setOnClickPendingIntent(R.id.widget_container, pendingIntent)
 
     // Instruct the widget manager to update the widget

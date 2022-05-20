@@ -35,7 +35,8 @@
                 app:iconUrl="@{daily.weather[0].icon}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:backgroundTint="@color/black"/>
 
             <TextView
                 android:id="@+id/max_text"
@@ -57,21 +58,12 @@
                 tools:text="53 F" />
 
             <TextView
-                android:id="@+id/day_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="4dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="Tue" />
-
-            <TextView
                 android:id="@+id/humidity_daily_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
+                android:layout_marginStart="16dp"
                 android:text="@{@string/humidity(daily.humidity)}"
+                app:layout_constraintBottom_toTopOf="@+id/guideline2"
                 app:layout_constraintStart_toEndOf="@+id/max_text"
                 app:layout_constraintTop_toTopOf="@+id/max_text"
                 tools:text="50%" />
@@ -89,7 +81,9 @@
                 android:id="@+id/pop_daily_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
                 android:text="@{@string/probability(daily.pop)}"
+                app:layout_constraintEnd_toStartOf="@+id/day_text"
                 app:layout_constraintStart_toEndOf="@+id/humidity_daily_text"
                 app:layout_constraintTop_toTopOf="@+id/humidity_daily_text"
                 tools:text="Rain: 50%" />
@@ -99,9 +93,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@{@string/precipitation(daily.rainAndSnow)}"
-                app:layout_constraintStart_toEndOf="@+id/wind_daily_text"
+                app:layout_constraintEnd_toEndOf="@+id/pop_daily_text"
+                app:layout_constraintStart_toStartOf="@+id/pop_daily_text"
                 app:layout_constraintTop_toBottomOf="@+id/pop_daily_text"
                 tools:text="Amount: 1.0 in" />
+
+            <TextView
+                android:id="@+id/day_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="4dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Tue" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline2"
