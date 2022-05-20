@@ -26,7 +26,6 @@ class FetchDataWorker @AssistedInject constructor(
             val lon = inputData.getDouble(lonKey, 0.0)
             val alerts =
                 ForecastApi.retrofitService.getAlertsOnly(lat, lon, units = "imperial").alertList
-            Timber.i(alerts?.size.toString())
 
             val outputData = Data.Builder()
                 .putString("first", "Hi Da")
@@ -35,7 +34,7 @@ class FetchDataWorker @AssistedInject constructor(
             val alertPendingIntent =
                 NavDeepLinkBuilder(applicationContext)
                     .setGraph(R.navigation.mobile_navigation)
-                    .setDestination(R.id.navigation_alerts)
+                    .setDestination(R.id.action_notif_to_alerts)
                     .createPendingIntent()
 
             val builder =
@@ -44,6 +43,7 @@ class FetchDataWorker @AssistedInject constructor(
                     .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                     .setContentTitle("Weather alert")
                     .setContentIntent(alertPendingIntent)
+                    .setAutoCancel(true)
 
             if (!alerts.isNullOrEmpty()) {
                 val inbox = NotificationCompat.InboxStyle()
@@ -51,11 +51,14 @@ class FetchDataWorker @AssistedInject constructor(
                     inbox.addLine(it.event)
                 }
                 builder.setStyle(inbox)
+                with(NotificationManagerCompat.from(applicationContext)) {
+                    notify(1, builder.build())
+                }
+
             }
             with(NotificationManagerCompat.from(applicationContext)) {
                 notify(1, builder.build())
             }
-
             return Result.success(outputData)
         } catch (e: Error) {
             val errorData = Data.Builder()

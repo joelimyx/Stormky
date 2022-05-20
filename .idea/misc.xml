@@ -25,11 +25,17 @@
         <entry key="..\:/Users/Cfrogz/AndroidStudioProjects/Stormky/app/src/main/res/layout/item_alert.xml" value="0.33" />
         <entry key="..\:/Users/Cfrogz/AndroidStudioProjects/Stormky/app/src/main/res/layout/item_alerts.xml" value="0.1" />
         <entry key="..\:/Users/Cfrogz/AndroidStudioProjects/Stormky/app/src/main/res/layout/item_daily.xml" value="0.5" />
+        <entry key="..\:/Users/Cfrogz/AndroidStudioProjects/Stormky/app/src/main/res/layout/item_grid_widget.xml" value="0.3009833262077811" />
         <entry key="..\:/Users/Cfrogz/AndroidStudioProjects/Stormky/app/src/main/res/layout/item_hourly.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Cfrogz/AndroidStudioProjects/Stormky/app/src/main/res/layout/item_temp.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Cfrogz/AndroidStudioProjects/Stormky/app/src/main/res/layout/item_widget_grid.xml" value="0.30012825994014536" />
+        <entry key="..\:/Users/Cfrogz/AndroidStudioProjects/Stormky/app/src/main/res/layout/stormky_widget.xml" value="0.3009833262077811" />
+        <entry key="..\:/Users/Cfrogz/AndroidStudioProjects/Stormky/app/src/main/res/layout/widget_gridview.xml" value="0.30012825994014536" />
+        <entry key="..\:/Users/Cfrogz/AndroidStudioProjects/Stormky/app/src/main/res/layout/widget_layout.xml" value="0.3009833262077811" />
         <entry key="..\:/Users/Cfrogz/AndroidStudioProjects/Stormky/app/src/main/res/menu/bottom_nav_menu.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Cfrogz/AndroidStudioProjects/Stormky/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2795" />
         <entry key="..\:/Users/Cfrogz/AndroidStudioProjects/Stormky/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.2795" />
+        <entry key="..\:/Users/Cfrogz/AndroidStudioProjects/Stormky/app/src/main/res/xml/app_widget.xml" value="0.3009833262077811" />
         <entry key="..\:/Users/Cfrogz/Stormky/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Cfrogz/Stormky/app/src/main/res/layout/fragment_dashboard.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Cfrogz/Stormky/app/src/main/res/layout/fragment_notifications.xml" value="0.36666666666666664" />
@@ -46,7 +52,7 @@
   <component name="VisualizationToolProject">
     <option name="state">
       <ProjectState>
-        <option name="scale" value="0.12" />
+        <option name="scale" value="0.5" />
       </ProjectState>
     </option>
   </component>

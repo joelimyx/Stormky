@@ -1,0 +1,21 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Widget.Stormky.AppWidget.Container"
+    android:id="@+id/widget_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:theme="@style/Theme.Stormky.AppWidgetContainer">
+
+    <GridView
+        android:id="@+id/grid_widget"
+        android:numColumns="5"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <TextView
+        android:id="@+id/text_widget"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Not connected"
+        />
+</RelativeLayout>

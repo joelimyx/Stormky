@@ -9,13 +9,26 @@
         android:id="@+id/navigation_home"
         android:name="com.example.stormky.ui.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home">
+
+        <action
+            android:id="@+id/action_widget_to_hourly"
+            app:destination="@id/navigation_hourly"
+            app:popUpTo="@id/mobile_navigation"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_notif_to_alerts"
+            app:destination="@id/navigation_alerts"
+            app:popUpTo="@id/mobile_navigation"
+            app:popUpToInclusive="true" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_hourly"
         android:name="com.example.stormky.ui.hourly.HourlyFragment"
         android:label="@string/title_hourly"
-        tools:layout="@layout/fragment_hourly" />
+        tools:layout="@layout/fragment_hourly" >
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_alerts"
