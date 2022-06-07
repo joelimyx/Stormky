@@ -1,11 +1,15 @@
 package com.example.stormky.model
 
 import androidx.lifecycle.*
+import com.example.stormky.database.WeatherDB
+import com.example.stormky.database.WeatherDao
 import com.example.stormky.network.ForecastApi
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import timber.log.Timber
+import java.lang.IllegalArgumentException
 
-class ForecastViewModel : ViewModel() {
+class ForecastViewModel(private val weatherDao: WeatherDao) : ViewModel() {
 
     private val _forecast = MutableLiveData<Forecast>()
     private val forecast: LiveData<Forecast> = _forecast
@@ -35,6 +39,8 @@ class ForecastViewModel : ViewModel() {
 
     private val _alertSize = MutableLiveData(0)
     val alertSize: LiveData<Int> = _alertSize
+
+    val dbData: LiveData<List<WeatherDB>> = weatherDao.getAll().asLiveData()
 
     init {
         getWeatherByLoc(47.57, -101.93)
@@ -73,4 +79,21 @@ class ForecastViewModel : ViewModel() {
     fun toggleSwitch() {
         _listSwitch.value = !_listSwitch.value!!
     }
+
+    fun addLocation(lat:Double, lon: Double){
+        viewModelScope.launch {
+            weatherDao.insertLoc(WeatherDB(lat=lat, lon = lon))
+        }
+    }
+}
+
+class ForecastViewModelFactory(private val weatherDao: WeatherDao):ViewModelProvider.Factory{
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        if (modelClass.isAssignableFrom(ForecastViewModel::class.java)){
+            @Suppress("UNCHECKED_CAST")
+            return ForecastViewModel(weatherDao) as T
+        }
+        throw IllegalArgumentException("Unknown ViewModel Class")
+    }
+
 }

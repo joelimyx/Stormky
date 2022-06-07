@@ -11,9 +11,11 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import com.example.stormky.ForecastApplication
 import com.example.stormky.R
 import com.example.stormky.databinding.FragmentHomeBinding
 import com.example.stormky.model.ForecastViewModel
+import com.example.stormky.model.ForecastViewModelFactory
 import com.example.stormky.model.getFormattedTime
 import com.google.android.gms.location.LocationServices
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -30,7 +32,11 @@ class HomeFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
-    private val forecastViewModel: ForecastViewModel by activityViewModels()
+    private val forecastViewModel: ForecastViewModel by activityViewModels{
+        ForecastViewModelFactory(
+            (activity?.application as ForecastApplication).database.weatherDao()
+        )
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -61,7 +67,6 @@ class HomeFragment : Fragment() {
             binding.timeText.text = getString(R.string.current_time, getFormattedTime(it.currentTime))
 
             val uvPercent = binding.uvScaleImage.width*(it.uvi).div(10)
-//            Timber.i("Cont_X:${binding.uvScaleImage.width} UV: ${it.uvi}")
 
             val animation = TranslateAnimation(0F, (uvPercent).toFloat(), 0F, 0F)
             animation.duration = 2000

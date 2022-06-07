@@ -11,18 +11,22 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.asLiveData
+import androidx.lifecycle.coroutineScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import androidx.work.*
 import com.example.stormky.databinding.ActivityMainBinding
 import com.example.stormky.model.ForecastViewModel
+import com.example.stormky.model.ForecastViewModelFactory
 import com.example.stormky.ui.hourly.HourlyFragment
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.color.DynamicColors
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 import timber.log.Timber
 import java.util.concurrent.TimeUnit
 
@@ -34,7 +38,11 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
 
     lateinit var fusedLocationProviderClient: FusedLocationProviderClient
-    private val viewModel: ForecastViewModel by viewModels()
+    private val viewModel: ForecastViewModel by viewModels{
+        ForecastViewModelFactory(
+            (application as ForecastApplication).database.weatherDao()
+        )
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -72,6 +80,11 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+
+        viewModel.dbData.observe(this){
+            Timber.i("Size: ${it.size}")
+        }
+
         startWork()
     }
 
@@ -128,7 +141,7 @@ class MainActivity : AppCompatActivity() {
                 permissions.getOrDefault(Manifest.permission.ACCESS_FINE_LOCATION, false) ->{
                     fusedLocationProviderClient.lastLocation.addOnSuccessListener {
                         it.apply {
-                            Timber.i(longitude.toString())
+                            Timber.i("${longitude} register fine")
                             Timber.i(latitude.toString())
                         }
                     }
@@ -136,7 +149,7 @@ class MainActivity : AppCompatActivity() {
                 permissions.getOrDefault(Manifest.permission.ACCESS_COARSE_LOCATION, false) ->{
                     fusedLocationProviderClient.lastLocation.addOnSuccessListener {
                         it.apply {
-                            Timber.i(longitude.toString())
+                            Timber.i("${longitude} register course")
                             Timber.i(latitude.toString())
                         }
                     }
@@ -150,8 +163,9 @@ class MainActivity : AppCompatActivity() {
             checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION), checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) -> {
                 fusedLocationProviderClient.lastLocation.addOnSuccessListener {
                     it.apply {
-                        Timber.i(longitude.toString())
-                        Timber.i(latitude.toString())
+//                        Timber.i(longitude.toString()+ "granted")
+//                        Timber.i(latitude.toString())
+                        viewModel.addLocation(latitude, longitude)
                     }
                 }
             }
