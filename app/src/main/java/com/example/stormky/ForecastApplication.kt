@@ -6,13 +6,15 @@ import android.app.NotificationManager
 import android.content.Context
 import androidx.hilt.work.HiltWorkerFactory
 import androidx.work.Configuration
+import com.example.stormky.database.AppDatabase
 import com.google.android.material.color.DynamicColors
 import dagger.hilt.android.HiltAndroidApp
-import timber.log.Timber
 import javax.inject.Inject
 
 @HiltAndroidApp
 class ForecastApplication : Application(), Configuration.Provider {
+
+    val database: AppDatabase by lazy { AppDatabase.getInstance(this) }
 
     @Inject
     lateinit var workerFactory: HiltWorkerFactory
@@ -32,6 +34,7 @@ class ForecastApplication : Application(), Configuration.Provider {
         val notificationManager: NotificationManager =
             getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         notificationManager.createNotificationChannel(channel)
+
     }
 
     companion object {
