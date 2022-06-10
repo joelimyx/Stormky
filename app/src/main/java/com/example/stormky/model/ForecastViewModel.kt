@@ -1,12 +1,10 @@
 package com.example.stormky.model
 
 import androidx.lifecycle.*
-import com.example.stormky.database.WeatherDB
+import com.example.stormky.database.WeatherEnt
 import com.example.stormky.database.WeatherDao
 import com.example.stormky.network.ForecastApi
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
-import timber.log.Timber
 import java.lang.IllegalArgumentException
 
 class ForecastViewModel(private val weatherDao: WeatherDao) : ViewModel() {
@@ -40,7 +38,7 @@ class ForecastViewModel(private val weatherDao: WeatherDao) : ViewModel() {
     private val _alertSize = MutableLiveData(0)
     val alertSize: LiveData<Int> = _alertSize
 
-    val dbData: LiveData<List<WeatherDB>> = weatherDao.getAll().asLiveData()
+    val dbData: LiveData<List<WeatherEnt>> = weatherDao.getAll().asLiveData()
 
     init {
         getWeatherByLoc(47.57, -101.93)
@@ -80,9 +78,9 @@ class ForecastViewModel(private val weatherDao: WeatherDao) : ViewModel() {
         _listSwitch.value = !_listSwitch.value!!
     }
 
-    fun addLocation(lat:Double, lon: Double){
+    fun addLocation(lat:Double, lon: Double, type: String){
         viewModelScope.launch {
-            weatherDao.insertLoc(WeatherDB(lat=lat, lon = lon))
+            weatherDao.insertLoc(WeatherEnt(id = 1, lat=lat, lon = lon, type = type))
         }
     }
 }

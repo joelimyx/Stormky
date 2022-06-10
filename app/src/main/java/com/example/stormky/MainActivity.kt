@@ -16,7 +16,12 @@ import androidx.lifecycle.coroutineScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import androidx.room.Room
+import androidx.room.RoomDatabase
+import androidx.room.migration.Migration
+import androidx.sqlite.db.SupportSQLiteDatabase
 import androidx.work.*
+import com.example.stormky.database.AppDatabase
 import com.example.stormky.databinding.ActivityMainBinding
 import com.example.stormky.model.ForecastViewModel
 import com.example.stormky.model.ForecastViewModelFactory
@@ -165,7 +170,8 @@ class MainActivity : AppCompatActivity() {
                     it.apply {
 //                        Timber.i(longitude.toString()+ "granted")
 //                        Timber.i(latitude.toString())
-                        viewModel.addLocation(latitude, longitude)
+                        if (it != null)
+                            viewModel.addLocation(latitude, longitude, "default")
                     }
                 }
             }
