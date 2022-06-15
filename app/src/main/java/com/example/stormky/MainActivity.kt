@@ -26,6 +26,7 @@ import com.example.stormky.databinding.ActivityMainBinding
 import com.example.stormky.model.ForecastViewModel
 import com.example.stormky.model.ForecastViewModelFactory
 import com.example.stormky.ui.hourly.HourlyFragment
+import com.example.stormky.ui.widget.StormkyWidget
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -103,7 +104,12 @@ class MainActivity : AppCompatActivity() {
 
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
-        intentToHourly(intent)
+
+        if(intent?.extras?.getBoolean(FetchDataWorker.notifKey, false) == true){
+            navController.navigate(R.id.action_notif_to_alerts)
+        }else if(intent?.extras?.getBoolean(StormkyWidget.widgetKey, false) == true) {
+            intentToHourly(intent)
+        }
     }
 
     fun intentToHourly(intent: Intent?){
