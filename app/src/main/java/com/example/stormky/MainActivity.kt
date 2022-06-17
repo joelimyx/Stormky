@@ -75,8 +75,6 @@ class MainActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
 
-        Timber.i("onStart: ${intent?.extras.toString()}")
-
         bottomNavView.setOnItemReselectedListener {
             when(it.itemId){
                 R.id.navigation_hourly->{
@@ -105,16 +103,12 @@ class MainActivity : AppCompatActivity() {
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
 
+        Timber.i("${ intent?.extras?.getBoolean(StormkyWidget.widgetKey, false) }")
+
         if(intent?.extras?.getBoolean(FetchDataWorker.notifKey, false) == true){
             navController.navigate(R.id.action_notif_to_alerts)
-        }else if(intent?.extras?.getBoolean(StormkyWidget.widgetKey, false) == true) {
-            intentToHourly(intent)
-        }
-    }
 
-    fun intentToHourly(intent: Intent?){
-        if (intent?.extras != null) {
-            Timber.i((intent.extras.toString()))
+        }else if(intent?.extras?.getBoolean(StormkyWidget.widgetKey, false) == true) {
             navController.navigate(R.id.action_widget_to_hourly)
         }
     }
@@ -127,11 +121,11 @@ class MainActivity : AppCompatActivity() {
             .build()
 
         val alertData = Data.Builder()
-            .putDouble(FetchDataWorker.latKey, 35.08)
-            .putDouble(FetchDataWorker.lonKey, -106.11)
+            .putDouble(FetchDataWorker.latKey, 47.57)
+            .putDouble(FetchDataWorker.lonKey, -101.93)
             .build()
 
-        val periodicWork = PeriodicWorkRequestBuilder<FetchDataWorker>(2, TimeUnit.SECONDS)
+        val periodicWork = PeriodicWorkRequestBuilder<FetchDataWorker>(2, TimeUnit.HOURS)
             .setConstraints(constraints)
             .setInputData(alertData)
             .setInitialDelay(10, TimeUnit.SECONDS)

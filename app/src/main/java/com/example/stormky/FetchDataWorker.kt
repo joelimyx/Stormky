@@ -40,7 +40,11 @@ class FetchDataWorker @AssistedInject constructor(
                 putExtra(notifKey, true)
             }
             val alertPendingIntent =
-                PendingIntent.getActivity(applicationContext,0, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
+                PendingIntent.getActivity(
+                    applicationContext,
+                    0,
+                    intent,
+                    PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
 
             val builder =
                 NotificationCompat.Builder(applicationContext, ForecastApplication.CHANNEL_ID)
@@ -56,6 +60,7 @@ class FetchDataWorker @AssistedInject constructor(
                     inbox.addLine(it.event)
                 }
                 builder.setStyle(inbox)
+
                 with(NotificationManagerCompat.from(applicationContext)) {
                     notify(1, builder.build())
                 }

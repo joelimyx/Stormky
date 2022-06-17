@@ -35,6 +35,7 @@ class StormkyWidget : AppWidgetProvider() {
     override fun onDisabled(context: Context) {
         // Enter relevant functionality for when the last widget is disabled
     }
+
     companion object{
         const val widgetKey = "fromWidget"
     }
@@ -49,18 +50,18 @@ internal fun updateAppWidget(
 
     val hourlyIntent = Intent(context, MainActivity::class.java).apply {
         putExtra(StormkyWidget.widgetKey, true)
-        flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
+        flags = Intent.FLAG_ACTIVITY_NEW_TASK
     }
 
     val pendingIntent:PendingIntent = PendingIntent.getActivity(
         context,
-        0,
+        1,
         hourlyIntent,
-        PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
+        PendingIntent.FLAG_IMMUTABLE)
 
     // Construct the RemoteViews object
     val views = RemoteViews(context.packageName, R.layout.widget_layout).apply {
-        setEmptyView(R.id.grid_widget, R.id.text_widget)
+//        setEmptyView(R.id.grid_widget, R.id.text_widget)
         setOnClickPendingIntent(R.id.widget_container, pendingIntent)
     }
 
