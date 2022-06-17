@@ -37,8 +37,6 @@
             android:orientation="horizontal"
             app:layout_constraintGuide_percent=".05" />
 
-
-
         <ImageView
             android:id="@+id/current_icon"
             android:layout_width="64dp"
@@ -62,14 +60,14 @@
             tools:text="Sunny" />
 
         <TextView
-            android:id="@+id/description_text"
+            android:id="@+id/city_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="2dp"
-            android:text="@{viewModel.weather[0].description}"
+            android:text="@{viewModel.geoCode.name}"
             app:layout_constraintStart_toEndOf="@+id/current_icon"
             app:layout_constraintTop_toBottomOf="@+id/current_text"
-            tools:text="Clear Sky" />
+            tools:text="New York" />
 
         <TextView
             android:id="@+id/temp_text"
@@ -80,7 +78,7 @@
             android:text="@{@string/temp(viewModel.current.temp)}"
             android:textSize="28sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/description_text"
+            app:layout_constraintTop_toBottomOf="@+id/city_text"
             tools:text="Temp: 35F" />
 
         <TextView

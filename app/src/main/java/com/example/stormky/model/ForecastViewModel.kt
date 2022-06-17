@@ -1,11 +1,15 @@
 package com.example.stormky.model
 
+import android.widget.Toast
 import androidx.lifecycle.*
 import com.example.stormky.database.WeatherEnt
 import com.example.stormky.database.WeatherDao
 import com.example.stormky.network.ForecastApi
 import kotlinx.coroutines.launch
+import timber.log.Timber
+import java.lang.Error
 import java.lang.IllegalArgumentException
+import kotlin.math.log
 
 class ForecastViewModel(private val weatherDao: WeatherDao) : ViewModel() {
 
@@ -23,6 +27,7 @@ class ForecastViewModel(private val weatherDao: WeatherDao) : ViewModel() {
     private val _weather = MutableLiveData<List<Weather>>()
     val weather: LiveData<List<Weather>> = _weather
 
+    //Hourly/Daily
     private val _hourlyList = MutableLiveData<List<Current>>()
     val hourlyList: LiveData<List<Current>> = _hourlyList
 
@@ -32,12 +37,18 @@ class ForecastViewModel(private val weatherDao: WeatherDao) : ViewModel() {
     private val _listSwitch = MutableLiveData(true)
     val listSwitch: LiveData<Boolean> = _listSwitch
 
+    //Alert
     private val _alertList = MutableLiveData(listOf<Alert>())
     val alertList: LiveData<List<Alert>> = _alertList
 
     private val _alertSize = MutableLiveData(0)
     val alertSize: LiveData<Int> = _alertSize
 
+    //Location
+    private val _geocode = MutableLiveData<GeoCode>()
+    val geoCode: LiveData<GeoCode> = _geocode
+
+    //Database
     val dbData: LiveData<List<WeatherEnt>> = weatherDao.getAll().asLiveData()
 
     init {
@@ -74,6 +85,16 @@ class ForecastViewModel(private val weatherDao: WeatherDao) : ViewModel() {
         }
     }
 
+    fun getCityByLoc(lat: Double, lon: Double){
+        viewModelScope.launch {
+            try {
+                _geocode.value = ForecastApi.retrofitService.getCityByCoord(lat, lon)[0]
+                Timber.i(geoCode.value?.name)
+            }catch (e: Exception){
+                throw e
+            }
+        }
+    }
     fun toggleSwitch() {
         _listSwitch.value = !_listSwitch.value!!
     }

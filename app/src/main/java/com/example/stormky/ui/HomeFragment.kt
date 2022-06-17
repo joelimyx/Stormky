@@ -83,8 +83,12 @@ class HomeFragment : Fragment() {
     fun getWeatherInFrag() {
 
         LocationServices.getFusedLocationProviderClient(requireContext()).lastLocation.addOnSuccessListener {
-            forecastViewModel.getWeatherByLoc(it.latitude, it.longitude)
-            forecastViewModel.addLocation(it.latitude, it.longitude, "default")
+            forecastViewModel.apply {
+                getWeatherByLoc(it.latitude, it.longitude)
+                addLocation(it.latitude, it.longitude, "default")
+                getCityByLoc(it.latitude,it.longitude)
+            }
+
             Toast.makeText(requireContext(), "Location Updated", Toast.LENGTH_SHORT)
                 .show()
         }

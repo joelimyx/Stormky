@@ -2,6 +2,7 @@ package com.example.stormky.network
 
 import com.example.stormky.BuildConfig
 import com.example.stormky.model.Forecast
+import com.example.stormky.model.GeoCode
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Retrofit
@@ -37,6 +38,14 @@ interface ForecastApiService {
         @Query("units") units: String,
         @Query("exclude") exclude: String = "minutely, current, hourly, daily"
     ): Forecast
+
+    @GET("geo/1.0/reverse")
+    suspend fun getCityByCoord(
+        @Query("lat") lat: Double,
+        @Query("lon") lon: Double,
+        @Query("appid") appid: String = BuildConfig.KEY,
+        @Query("limit") limit:Int = 3
+    ): List<GeoCode>
 }
 
 object ForecastApi {

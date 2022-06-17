@@ -168,10 +168,10 @@ class MainActivity : AppCompatActivity() {
             checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION), checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) -> {
                 fusedLocationProviderClient.lastLocation.addOnSuccessListener {
                     it.apply {
-//                        Timber.i(longitude.toString()+ "granted")
-//                        Timber.i(latitude.toString())
-                        if (it != null)
+                        if (it != null) {
                             viewModel.addLocation(latitude, longitude, "default")
+                            viewModel.getCityByLoc(latitude,longitude)
+                        }
                     }
                 }
             }
