@@ -41,9 +41,6 @@ class ForecastViewModel(private val weatherDao: WeatherDao) : ViewModel() {
     private val _alertList = MutableLiveData(listOf<Alert>())
     val alertList: LiveData<List<Alert>> = _alertList
 
-    private val _alertSize = MutableLiveData(0)
-    val alertSize: LiveData<Int> = _alertSize
-
     //Location
     private val _geocode = MutableLiveData<GeoCode>()
     val geoCode: LiveData<GeoCode> = _geocode
@@ -77,7 +74,6 @@ class ForecastViewModel(private val weatherDao: WeatherDao) : ViewModel() {
                 }else{
                     _alertList.value = listOf()
                 }
-                _alertSize.value = alertList.value!!.size
 
             } catch (e: Exception) {
                 throw e
@@ -89,7 +85,6 @@ class ForecastViewModel(private val weatherDao: WeatherDao) : ViewModel() {
         viewModelScope.launch {
             try {
                 _geocode.value = ForecastApi.retrofitService.getCityByCoord(lat, lon)[0]
-                Timber.i(geoCode.value?.name)
             }catch (e: Exception){
                 throw e
             }

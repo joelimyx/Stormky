@@ -50,6 +50,6 @@ fun alertStatus(noAlertText: TextView, size:Int){
     if (size < 1) {
         noAlertText.visibility = View.VISIBLE
     } else {
-        noAlertText.visibility = View.INVISIBLE
+        noAlertText.visibility = View.GONE
     }
 }

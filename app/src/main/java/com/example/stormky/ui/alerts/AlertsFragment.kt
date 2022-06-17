@@ -43,7 +43,6 @@ class AlertsFragment : Fragment() {
         _binding?.apply {
             lifecycleOwner = viewLifecycleOwner
             viewModel = forecastViewModel
-            alertFragment = this@AlertsFragment
             recyclerView.adapter = AlertAdapter()
         }
     }
