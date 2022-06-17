@@ -28,19 +28,19 @@ fun bindImage(imgView: ImageView, iconUrl: String?) {
 }
 
 @BindingAdapter("listData")
-fun bindHourlyRecyclerView(recyclerView: RecyclerView, data: List<Current>) {
+fun bindHourlyRecyclerView(recyclerView: RecyclerView, data: List<Current>?) {
     val adapter = recyclerView.adapter as HourlyAdapter
     adapter.submitList(data)
 }
 
 @BindingAdapter("listDaily")
-fun bindDailyRecyclerView(recyclerView: RecyclerView, data: List<Daily>) {
+fun bindDailyRecyclerView(recyclerView: RecyclerView, data: List<Daily>?) {
     val adapter = recyclerView.adapter as DailyAdapter
     adapter.submitList(data)
 }
 
 @BindingAdapter("listAlert")
-fun bindAlertRecyclerView(recyclerView: RecyclerView, data: List<Alert>) {
+fun bindAlertRecyclerView(recyclerView: RecyclerView, data: List<Alert>?) {
     val adapter = recyclerView.adapter as AlertAdapter
     adapter.submitList(data)
 }

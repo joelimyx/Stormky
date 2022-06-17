@@ -1,6 +1,9 @@
 package com.example.stormky
 
+import android.app.PendingIntent
 import android.content.Context
+import android.content.Intent
+import android.os.Bundle
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.hilt.work.HiltWorker
@@ -9,6 +12,7 @@ import androidx.work.CoroutineWorker
 import androidx.work.Data
 import androidx.work.WorkerParameters
 import com.example.stormky.network.ForecastApi
+import com.example.stormky.ui.HomeFragment
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
 import timber.log.Timber
@@ -31,11 +35,16 @@ class FetchDataWorker @AssistedInject constructor(
                 .putString("first", "Hi Da")
                 .build()
 
+            val intent = Intent(applicationContext, MainActivity::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
+                putExtra(notifKey, true)
+            }
             val alertPendingIntent =
-                NavDeepLinkBuilder(applicationContext)
-                    .setGraph(R.navigation.mobile_navigation)
-                    .setDestination(R.id.action_notif_to_alerts)
-                    .createPendingIntent()
+                PendingIntent.getActivity(
+                    applicationContext,
+                    0,
+                    intent,
+                    PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
 
             val builder =
                 NotificationCompat.Builder(applicationContext, ForecastApplication.CHANNEL_ID)
@@ -51,15 +60,15 @@ class FetchDataWorker @AssistedInject constructor(
                     inbox.addLine(it.event)
                 }
                 builder.setStyle(inbox)
+
                 with(NotificationManagerCompat.from(applicationContext)) {
                     notify(1, builder.build())
                 }
 
             }
-            with(NotificationManagerCompat.from(applicationContext)) {
-                notify(1, builder.build())
-            }
+
             return Result.success(outputData)
+
         } catch (e: Error) {
             val errorData = Data.Builder()
                 .putString("Error", e.toString())
@@ -69,7 +78,7 @@ class FetchDataWorker @AssistedInject constructor(
     }
 
     companion object {
-        const val alertKey = "alertSize"
+        const val notifKey = "fromNotif"
         const val alertTitle = "alertTitle"
         const val alertText = "alertText"
 
