@@ -1,15 +1,12 @@
 package com.example.stormky.model
 
-import android.widget.Toast
 import androidx.lifecycle.*
 import com.example.stormky.database.WeatherEnt
 import com.example.stormky.database.WeatherDao
 import com.example.stormky.network.ForecastApi
 import kotlinx.coroutines.launch
 import timber.log.Timber
-import java.lang.Error
 import java.lang.IllegalArgumentException
-import kotlin.math.log
 
 class ForecastViewModel(private val weatherDao: WeatherDao) : ViewModel() {
 
@@ -88,12 +85,26 @@ class ForecastViewModel(private val weatherDao: WeatherDao) : ViewModel() {
             }catch (e: Exception){
                 throw e
             }
+
         }
     }
+
+    fun getCityByZip(zip: String){
+        viewModelScope.launch {
+            try {
+                _geocode.value = ForecastApi.retrofitService.getCityByZip("${zip},US")
+                getWeatherByLoc(geoCode.value!!.lat, geoCode.value!!.lon)
+            }catch (e: Exception){
+                throw e
+            }
+        }
+    }
+
     fun toggleSwitch() {
         _listSwitch.value = !_listSwitch.value!!
     }
 
+    //Database
     fun addLocation(lat:Double, lon: Double, type: String){
         viewModelScope.launch {
             weatherDao.insertLoc(WeatherEnt(id = 1, lat=lat, lon = lon, type = type))

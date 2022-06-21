@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.view.animation.TranslateAnimation
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.stormky.ForecastApplication
@@ -20,6 +21,7 @@ import com.example.stormky.model.getFormattedTime
 import com.google.android.gms.location.LocationServices
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.delay
 import timber.log.Timber
 
 
@@ -57,6 +59,18 @@ class HomeFragment : Fragment() {
             viewModel = forecastViewModel
             lifecycleOwner = viewLifecycleOwner
             homeFragment = this@HomeFragment
+            searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    if (query != null) {
+                        searchLoc(query)
+                    }
+                    return true
+                }
+
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    return false
+                }
+            })
         }
     }
 
@@ -78,6 +92,14 @@ class HomeFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    fun searchLoc(zip: String){
+        forecastViewModel.getCityByZip(zip)
+        binding.searchView.apply {
+            setQuery("", false)
+            clearFocus()
+        }
     }
 
     fun getWeatherInFrag() {

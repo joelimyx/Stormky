@@ -30,6 +30,17 @@
             android:orientation="vertical"
             app:layout_constraintGuide_percent=".5" />
 
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/searchView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/top_h_guide"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:queryHint="Please enter Zip Code"
+            app:iconifiedByDefault="false"
+            />
+
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/top_h_guide"
             android:layout_width="wrap_content"
