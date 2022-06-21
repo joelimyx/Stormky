@@ -30,14 +30,23 @@
             android:orientation="vertical"
             app:layout_constraintGuide_percent=".5" />
 
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/searchView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/top_h_guide"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:queryHint="Please enter Zip Code"
+            app:iconifiedByDefault="false"
+            />
+
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/top_h_guide"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent=".05" />
-
-
 
         <ImageView
             android:id="@+id/current_icon"
@@ -62,14 +71,14 @@
             tools:text="Sunny" />
 
         <TextView
-            android:id="@+id/description_text"
+            android:id="@+id/city_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="2dp"
-            android:text="@{viewModel.weather[0].description}"
+            android:text="@{viewModel.geoCode.name}"
             app:layout_constraintStart_toEndOf="@+id/current_icon"
             app:layout_constraintTop_toBottomOf="@+id/current_text"
-            tools:text="Clear Sky" />
+            tools:text="New York" />
 
         <TextView
             android:id="@+id/temp_text"
@@ -80,7 +89,7 @@
             android:text="@{@string/temp(viewModel.current.temp)}"
             android:textSize="28sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/description_text"
+            app:layout_constraintTop_toBottomOf="@+id/city_text"
             tools:text="Temp: 35F" />
 
         <TextView

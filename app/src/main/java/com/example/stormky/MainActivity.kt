@@ -2,6 +2,7 @@ package com.example.stormky
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.app.SearchManager
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
@@ -86,7 +87,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         viewModel.dbData.observe(this){
-            Timber.i("Size: ${it.size}")
+//            Timber.i("Size: ${it.size}")
         }
 
         startWork()
@@ -168,10 +169,10 @@ class MainActivity : AppCompatActivity() {
             checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION), checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) -> {
                 fusedLocationProviderClient.lastLocation.addOnSuccessListener {
                     it.apply {
-//                        Timber.i(longitude.toString()+ "granted")
-//                        Timber.i(latitude.toString())
-                        if (it != null)
+                        if (it != null) {
                             viewModel.addLocation(latitude, longitude, "default")
+                            viewModel.getCityByLoc(latitude,longitude)
+                        }
                     }
                 }
             }
