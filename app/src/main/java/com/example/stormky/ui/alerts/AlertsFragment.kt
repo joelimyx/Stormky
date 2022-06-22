@@ -37,9 +37,6 @@ class AlertsFragment : Fragment() {
             viewModel = forecastViewModel
             recyclerView.adapter = AlertAdapter()
         }
-        forecastViewModel.alertStatus.observe(viewLifecycleOwner){
-            Timber.i("${it}")
-        }
     }
 
     override fun onDestroyView() {
