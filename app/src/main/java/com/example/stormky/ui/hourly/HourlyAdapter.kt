@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.stormky.databinding.ItemHourlyBinding
 import com.example.stormky.model.Current
+import java.text.SimpleDateFormat
+import java.util.*
 
 class HourlyAdapter : ListAdapter<Current, HourlyAdapter.HourlyViewHolder>(DiffCallback) {
 
@@ -23,17 +25,11 @@ class HourlyAdapter : ListAdapter<Current, HourlyAdapter.HourlyViewHolder>(DiffC
 
     class HourlyViewHolder(private var binding: ItemHourlyBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(current: Current, position: Int) {
+        fun bind(current: Current) {
             binding.hourly = current
-            val day = position / 24
-            val hours = position % 24
-            val hoursText: String
-            when (position) {
-                in 1..23 -> hoursText = "$hours H"
-                24 -> hoursText = "$day D"
-                else -> hoursText = "$day D $hours H"
-            }
-            binding.hourText.text = hoursText
+
+            val temp = SimpleDateFormat("h a", Locale.getDefault()).format(Date(current.currentTime*1000))
+            binding.hourText.text = temp
             binding.executePendingBindings()
         }
     }
@@ -48,7 +44,7 @@ class HourlyAdapter : ListAdapter<Current, HourlyAdapter.HourlyViewHolder>(DiffC
 
     override fun onBindViewHolder(holder: HourlyViewHolder, position: Int) {
         val current = getItem(position)
-        holder.bind(current, position + 1)
+        holder.bind(current)
 
     }
 }
