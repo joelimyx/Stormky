@@ -4,16 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
-import com.example.stormky.ForecastApplication
-import com.example.stormky.R
 import com.example.stormky.databinding.FragmentAlertsBinding
 import com.example.stormky.model.ForecastViewModel
-import com.example.stormky.model.ForecastViewModelFactory
+import timber.log.Timber
 
 class AlertsFragment : Fragment() {
 
@@ -22,11 +17,8 @@ class AlertsFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
-    private val forecastViewModel: ForecastViewModel by viewModels{
-        ForecastViewModelFactory(
-            (activity?.application as ForecastApplication).database.weatherDao()
-        )
-    }
+    private val forecastViewModel: ForecastViewModel by activityViewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -44,6 +36,9 @@ class AlertsFragment : Fragment() {
             lifecycleOwner = viewLifecycleOwner
             viewModel = forecastViewModel
             recyclerView.adapter = AlertAdapter()
+        }
+        forecastViewModel.alertStatus.observe(viewLifecycleOwner){
+            Timber.i("${it}")
         }
     }
 

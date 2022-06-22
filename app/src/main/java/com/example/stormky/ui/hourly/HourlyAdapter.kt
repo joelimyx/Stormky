@@ -30,6 +30,7 @@ class HourlyAdapter : ListAdapter<Current, HourlyAdapter.HourlyViewHolder>(DiffC
 
             val temp = SimpleDateFormat("h a", Locale.getDefault()).format(Date(current.currentTime*1000))
             binding.hourText.text = temp
+
             binding.executePendingBindings()
         }
     }

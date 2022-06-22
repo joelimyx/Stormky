@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.stormky.R
 import com.example.stormky.model.Alert
+import com.example.stormky.model.AlertStatus
 import com.example.stormky.model.Current
 import com.example.stormky.model.Daily
 import com.example.stormky.ui.alerts.AlertAdapter
@@ -44,12 +45,26 @@ fun bindAlertRecyclerView(recyclerView: RecyclerView, data: List<Alert>?) {
     val adapter = recyclerView.adapter as AlertAdapter
     adapter.submitList(data)
 }
+@BindingAdapter("listStatus")
+fun listStatus(recyclerView: RecyclerView, status: AlertStatus){
+    when(status) {
+        AlertStatus.DONE ->{
+            recyclerView.visibility = View.VISIBLE
+        }
+        AlertStatus.EMPTY ->{
+            recyclerView.visibility = View.INVISIBLE
+        }
+    }
+}
 
 @BindingAdapter("alertStatus")
-fun alertStatus(noAlertText: TextView, size:Int){
-    if (size < 1) {
-        noAlertText.visibility = View.VISIBLE
-    } else {
-        noAlertText.visibility = View.GONE
+fun alertStatus(noAlertText: TextView, status: AlertStatus){
+    when(status) {
+        AlertStatus.EMPTY ->{
+            noAlertText.visibility = View.VISIBLE
+        }
+        AlertStatus.DONE ->{
+            noAlertText.visibility = View.INVISIBLE
+        }
     }
 }
