@@ -18,7 +18,6 @@ class HourlyFragment : Fragment() {
     private val binding get() = _binding!!
     private val forecastViewModel: ForecastViewModel by activityViewModels()
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -57,10 +56,11 @@ class HourlyFragment : Fragment() {
             binding.recyclerView.visibility = View.VISIBLE
         }
     }
-    fun scrollToTop(){
+
+    fun scrollToTop() {
         if (forecastViewModel.listSwitch.value == true) {
             binding.recyclerView.scrollToPosition(0)
-        }else{
+        } else {
             binding.dailyRecyclerView.scrollToPosition(0)
         }
     }

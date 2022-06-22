@@ -5,8 +5,9 @@ import com.example.stormky.database.WeatherEnt
 import com.example.stormky.database.WeatherDao
 import com.example.stormky.network.ForecastApi
 import kotlinx.coroutines.launch
-import timber.log.Timber
 import java.lang.IllegalArgumentException
+
+enum class AlertStatus{EMPTY, DONE}
 
 class ForecastViewModel(private val weatherDao: WeatherDao) : ViewModel() {
 
@@ -38,6 +39,9 @@ class ForecastViewModel(private val weatherDao: WeatherDao) : ViewModel() {
     private val _alertList = MutableLiveData(listOf<Alert>())
     val alertList: LiveData<List<Alert>> = _alertList
 
+    private val _alertStatus = MutableLiveData<AlertStatus>()
+    val alertStatus: LiveData<AlertStatus> = _alertStatus
+
     //Location
     private val _geocode = MutableLiveData<GeoCode>()
     val geoCode: LiveData<GeoCode> = _geocode
@@ -68,8 +72,9 @@ class ForecastViewModel(private val weatherDao: WeatherDao) : ViewModel() {
 
                 if (forecast.value!!.alertList != null) {
                     _alertList.value = forecast.value!!.alertList!!
+                    _alertStatus.value = AlertStatus.DONE
                 }else{
-                    _alertList.value = listOf()
+                    _alertStatus.value = AlertStatus.EMPTY
                 }
 
             } catch (e: Exception) {

@@ -96,7 +96,7 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         viewModel.alertList.observe(this){
-            bottomNavView.getOrCreateBadge(R.id.navigation_alerts).isVisible = it.isNotEmpty()
+            bottomNavView.getOrCreateBadge(R.id.navigation_alerts).isVisible = !it.isNullOrEmpty()
         }
 
     }
