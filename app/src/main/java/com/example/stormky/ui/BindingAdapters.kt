@@ -14,7 +14,6 @@ import com.example.stormky.model.Daily
 import com.example.stormky.ui.alerts.AlertAdapter
 import com.example.stormky.ui.hourly.DailyAdapter
 import com.example.stormky.ui.hourly.HourlyAdapter
-import timber.log.Timber
 
 
 @BindingAdapter("iconUrl")

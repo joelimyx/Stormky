@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.stormky.databinding.FragmentAlertsBinding
 import com.example.stormky.model.ForecastViewModel
-import timber.log.Timber
 
 class AlertsFragment : Fragment() {
 

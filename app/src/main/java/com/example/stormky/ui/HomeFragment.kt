@@ -2,12 +2,10 @@ package com.example.stormky.ui
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.TranslateAnimation
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
@@ -19,10 +17,6 @@ import com.example.stormky.model.ForecastViewModel
 import com.example.stormky.model.ForecastViewModelFactory
 import com.example.stormky.model.getFormattedTime
 import com.google.android.gms.location.LocationServices
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.snackbar.Snackbar
-import kotlinx.coroutines.delay
-import timber.log.Timber
 
 
 @SuppressLint("MissingPermission")

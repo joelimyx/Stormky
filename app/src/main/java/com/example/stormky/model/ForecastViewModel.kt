@@ -1,11 +1,10 @@
 package com.example.stormky.model
 
 import androidx.lifecycle.*
-import com.example.stormky.database.WeatherEnt
 import com.example.stormky.database.WeatherDao
+import com.example.stormky.database.WeatherEnt
 import com.example.stormky.network.ForecastApi
 import kotlinx.coroutines.launch
-import java.lang.IllegalArgumentException
 
 enum class AlertStatus{EMPTY, DONE}
 
