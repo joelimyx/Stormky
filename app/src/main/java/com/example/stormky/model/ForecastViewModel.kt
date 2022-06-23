@@ -6,7 +6,7 @@ import com.example.stormky.database.WeatherEnt
 import com.example.stormky.network.ForecastApi
 import kotlinx.coroutines.launch
 
-enum class AlertStatus{EMPTY, DONE}
+enum class AlertStatus { EMPTY, DONE }
 
 class ForecastViewModel(private val weatherDao: WeatherDao) : ViewModel() {
 
@@ -72,7 +72,7 @@ class ForecastViewModel(private val weatherDao: WeatherDao) : ViewModel() {
                 if (forecast.value!!.alertList != null) {
                     _alertList.value = forecast.value!!.alertList!!
                     _alertStatus.value = AlertStatus.DONE
-                }else{
+                } else {
                     _alertStatus.value = AlertStatus.EMPTY
                 }
 
@@ -82,23 +82,23 @@ class ForecastViewModel(private val weatherDao: WeatherDao) : ViewModel() {
         }
     }
 
-    fun getCityByLoc(lat: Double, lon: Double){
+    fun getCityByLoc(lat: Double, lon: Double) {
         viewModelScope.launch {
             try {
                 _geocode.value = ForecastApi.retrofitService.getCityByCoord(lat, lon)[0]
-            }catch (e: Exception){
+            } catch (e: Exception) {
                 throw e
             }
 
         }
     }
 
-    fun getCityByZip(zip: String){
+    fun getCityByZip(zip: String) {
         viewModelScope.launch {
             try {
                 _geocode.value = ForecastApi.retrofitService.getCityByZip("${zip},US")
                 getWeatherByLoc(geoCode.value!!.lat, geoCode.value!!.lon)
-            }catch (e: Exception){
+            } catch (e: Exception) {
                 throw e
             }
         }
@@ -109,16 +109,16 @@ class ForecastViewModel(private val weatherDao: WeatherDao) : ViewModel() {
     }
 
     //Database
-    fun addLocation(lat:Double, lon: Double, type: String){
+    fun addLocation(lat: Double, lon: Double, type: String) {
         viewModelScope.launch {
-            weatherDao.insertLoc(WeatherEnt(id = 1, lat=lat, lon = lon, type = type))
+            weatherDao.insertLoc(WeatherEnt(id = 1, lat = lat, lon = lon, type = type))
         }
     }
 }
 
-class ForecastViewModelFactory(private val weatherDao: WeatherDao):ViewModelProvider.Factory{
+class ForecastViewModelFactory(private val weatherDao: WeatherDao) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(ForecastViewModel::class.java)){
+        if (modelClass.isAssignableFrom(ForecastViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
             return ForecastViewModel(weatherDao) as T
         }

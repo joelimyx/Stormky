@@ -34,7 +34,7 @@ class AlertAdapter : ListAdapter<Alert, AlertAdapter.AlertViewHolder>(DiffCallba
                             maxLines = 100
                             ellipsize = null
                         }
-                    }else{
+                    } else {
                         descriptionText.apply {
                             maxLines = 3
                             ellipsize = TextUtils.TruncateAt.END

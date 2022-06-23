@@ -44,25 +44,26 @@ fun bindAlertRecyclerView(recyclerView: RecyclerView, data: List<Alert>?) {
     val adapter = recyclerView.adapter as AlertAdapter
     adapter.submitList(data)
 }
+
 @BindingAdapter("listStatus")
-fun listStatus(recyclerView: RecyclerView, status: AlertStatus){
-    when(status) {
-        AlertStatus.DONE ->{
+fun listStatus(recyclerView: RecyclerView, status: AlertStatus) {
+    when (status) {
+        AlertStatus.DONE -> {
             recyclerView.visibility = View.VISIBLE
         }
-        AlertStatus.EMPTY ->{
+        AlertStatus.EMPTY -> {
             recyclerView.visibility = View.INVISIBLE
         }
     }
 }
 
 @BindingAdapter("alertStatus")
-fun alertStatus(noAlertText: TextView, status: AlertStatus){
-    when(status) {
-        AlertStatus.EMPTY ->{
+fun alertStatus(noAlertText: TextView, status: AlertStatus) {
+    when (status) {
+        AlertStatus.EMPTY -> {
             noAlertText.visibility = View.VISIBLE
         }
-        AlertStatus.DONE ->{
+        AlertStatus.DONE -> {
             noAlertText.visibility = View.INVISIBLE
         }
     }

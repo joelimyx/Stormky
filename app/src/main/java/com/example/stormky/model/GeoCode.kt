@@ -6,4 +6,4 @@ data class GeoCode(
     val country: String,
     val lat: Double,
     val lon: Double
-    )
+)

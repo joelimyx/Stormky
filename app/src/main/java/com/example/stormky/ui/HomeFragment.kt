@@ -28,7 +28,7 @@ class HomeFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
-    private val forecastViewModel: ForecastViewModel by activityViewModels{
+    private val forecastViewModel: ForecastViewModel by activityViewModels {
         ForecastViewModelFactory(
             (activity?.application as ForecastApplication).database.weatherDao()
         )
@@ -53,7 +53,7 @@ class HomeFragment : Fragment() {
             viewModel = forecastViewModel
             lifecycleOwner = viewLifecycleOwner
             homeFragment = this@HomeFragment
-            searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener {
+            searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?): Boolean {
                     if (query != null) {
                         searchLoc(query)
@@ -72,9 +72,10 @@ class HomeFragment : Fragment() {
         super.onStart()
 
         forecastViewModel.current.observe(viewLifecycleOwner) {
-            binding.timeText.text = getString(R.string.current_time, getFormattedTime(it.currentTime))
+            binding.timeText.text =
+                getString(R.string.current_time, getFormattedTime(it.currentTime))
 
-            val uvPercent = binding.uvScaleImage.width*(it.uvi).div(10)
+            val uvPercent = binding.uvScaleImage.width * (it.uvi).div(10)
 
             val animation = TranslateAnimation(0F, (uvPercent).toFloat(), 0F, 0F)
             animation.duration = 2000
@@ -88,7 +89,7 @@ class HomeFragment : Fragment() {
         _binding = null
     }
 
-    fun searchLoc(zip: String){
+    fun searchLoc(zip: String) {
         forecastViewModel.getCityByZip(zip)
         binding.searchView.apply {
             setQuery("", false)
@@ -102,7 +103,7 @@ class HomeFragment : Fragment() {
             forecastViewModel.apply {
                 getWeatherByLoc(it.latitude, it.longitude)
                 addLocation(it.latitude, it.longitude, "default")
-                getCityByLoc(it.latitude,it.longitude)
+                getCityByLoc(it.latitude, it.longitude)
             }
 
             Toast.makeText(requireContext(), "Location Updated", Toast.LENGTH_SHORT)

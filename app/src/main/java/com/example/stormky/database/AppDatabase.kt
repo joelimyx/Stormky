@@ -12,31 +12,32 @@ import androidx.sqlite.db.SupportSQLiteDatabase
     version = 3
 )
 
-abstract class AppDatabase:RoomDatabase() {
+abstract class AppDatabase : RoomDatabase() {
     abstract fun weatherDao(): WeatherDao
 
-    companion object{
+    companion object {
         @Volatile
         private var INSTANCE: AppDatabase? = null
 
-        fun getInstance(context: Context): AppDatabase{
-            return INSTANCE ?: synchronized(this){
+        fun getInstance(context: Context): AppDatabase {
+            return INSTANCE ?: synchronized(this) {
                 //DB Migration
-                val migration1_2 = object : Migration(1,2){
+                val migration1_2 = object : Migration(1, 2) {
                     override fun migrate(database: SupportSQLiteDatabase) {
                         database.execSQL("CREATE TABLE `weathert` (`id` INTEGER, `lat` DOUBLE, `long` DOUBLE, PRIMARY KEY(`id`))")
                         database.execSQL("DROP TABLE `weather`")
                         database.execSQL("ALTER TABLE weathert RENAME TO weather")
                     }
                 }
-                val migration2_3 = object: Migration(2,3){
+                val migration2_3 = object : Migration(2, 3) {
                     override fun migrate(database: SupportSQLiteDatabase) {
                         database.execSQL("ALTER TABLE weather ADD COLUMN  type TEXT")
                     }
                 }
 
                 val instance = Room.databaseBuilder(
-                    context, AppDatabase::class.java, "app_database")
+                    context, AppDatabase::class.java, "app_database"
+                )
                     .addMigrations(migration1_2, migration2_3)
                     .createFromAsset("database/weather.db")
                     .fallbackToDestructiveMigration()

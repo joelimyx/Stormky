@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.example.stormky.model.ForecastViewModel" />
@@ -25,7 +26,7 @@
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginBottom="@dimen/bottom_nav_height"
             app:listAlert="@{viewModel.alertList}"
-            app:listStatus="@{viewModel.alertStatus}"/>
+            app:listStatus="@{viewModel.alertStatus}" />
 
         <TextView
             android:id="@+id/no_alert_text"
@@ -38,6 +39,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:text="@string/no_alert_text"/>
+            android:text="@string/no_alert_text" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

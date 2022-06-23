@@ -27,8 +27,7 @@
         android:id="@+id/navigation_hourly"
         android:name="com.example.stormky.ui.hourly.HourlyFragment"
         android:label="@string/title_hourly"
-        tools:layout="@layout/fragment_hourly" >
-    </fragment>
+        tools:layout="@layout/fragment_hourly"></fragment>
 
     <fragment
         android:id="@+id/navigation_alerts"

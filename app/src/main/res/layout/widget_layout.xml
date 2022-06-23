@@ -5,16 +5,15 @@
     android:layout_height="match_parent"
     android:theme="@style/Theme.Stormky.AppWidgetContainer">
 
-<!--    <GridView-->
-<!--        android:id="@+id/grid_widget"-->
-<!--        android:numColumns="5"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"/>-->
+    <!--    <GridView-->
+    <!--        android:id="@+id/grid_widget"-->
+    <!--        android:numColumns="5"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent"/>-->
 
     <TextView
         android:id="@+id/text_widget"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Testing"
-        />
+        android:text="Testing" />
 </RelativeLayout>

@@ -38,8 +38,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:queryHint="Please enter Zip Code"
-            app:iconifiedByDefault="false"
-            />
+            app:iconifiedByDefault="false" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/top_h_guide"
@@ -367,7 +366,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_end="@dimen/bottom_nav_height"/>
+            app:layout_constraintGuide_end="@dimen/bottom_nav_height" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

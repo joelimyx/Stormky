@@ -44,12 +44,12 @@ interface ForecastApiService {
         @Query("lat") lat: Double,
         @Query("lon") lon: Double,
         @Query("appid") appid: String = BuildConfig.KEY,
-        @Query("limit") limit:Int = 3
+        @Query("limit") limit: Int = 3
     ): List<GeoCode>
 
     @GET("geo/1.0/zip")
     suspend fun getCityByZip(
-        @Query("zip")zip: String,
+        @Query("zip") zip: String,
         @Query("appid") appid: String = BuildConfig.KEY
     ): GeoCode
 }

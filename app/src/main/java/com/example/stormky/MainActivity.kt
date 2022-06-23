@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
 
     lateinit var fusedLocationProviderClient: FusedLocationProviderClient
-    private val viewModel: ForecastViewModel by viewModels{
+    private val viewModel: ForecastViewModel by viewModels {
         ForecastViewModelFactory(
             (application as ForecastApplication).database.weatherDao()
         )
@@ -56,7 +56,8 @@ class MainActivity : AppCompatActivity() {
 
         bottomNavView = binding.navView
 
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_main) as NavHostFragment
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_main) as NavHostFragment
         navController = navHostFragment.navController
 
         bottomNavView.setupWithNavController(navController)
@@ -67,16 +68,18 @@ class MainActivity : AppCompatActivity() {
         super.onStart()
 
         bottomNavView.setOnItemReselectedListener {
-            when(it.itemId){
-                R.id.navigation_hourly->{
-                    val navHost = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_main)
-                    val hourFrag = navHost?.childFragmentManager?.fragments?.get(0) as HourlyFragment
+            when (it.itemId) {
+                R.id.navigation_hourly -> {
+                    val navHost =
+                        supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_main)
+                    val hourFrag =
+                        navHost?.childFragmentManager?.fragments?.get(0) as HourlyFragment
                     hourFrag.scrollToTop()
                 }
             }
         }
 
-        viewModel.dbData.observe(this){
+        viewModel.dbData.observe(this) {
 //            Timber.i("Size: ${it.size}")
         }
 
@@ -85,7 +88,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        viewModel.alertList.observe(this){
+        viewModel.alertList.observe(this) {
             bottomNavView.getOrCreateBadge(R.id.navigation_alerts).isVisible = !it.isNullOrEmpty()
         }
 
@@ -94,12 +97,12 @@ class MainActivity : AppCompatActivity() {
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
 
-        Timber.i("${ intent?.extras?.getBoolean(StormkyWidget.widgetKey, false) }")
+        Timber.i("${intent?.extras?.getBoolean(StormkyWidget.widgetKey, false)}")
 
-        if(intent?.extras?.getBoolean(FetchDataWorker.notifKey, false) == true){
+        if (intent?.extras?.getBoolean(FetchDataWorker.notifKey, false) == true) {
             navController.navigate(R.id.action_notif_to_alerts)
 
-        }else if(intent?.extras?.getBoolean(StormkyWidget.widgetKey, false) == true) {
+        } else if (intent?.extras?.getBoolean(StormkyWidget.widgetKey, false) == true) {
             navController.navigate(R.id.action_widget_to_hourly)
         }
     }
@@ -130,50 +133,58 @@ class MainActivity : AppCompatActivity() {
             )
     }
 
-    fun getLocation(){
-        val locationPermission = registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()){
-            permissions ->
-            when{
-                permissions.getOrDefault(Manifest.permission.ACCESS_FINE_LOCATION, false) ->{
-                    fusedLocationProviderClient.lastLocation.addOnSuccessListener {
-                        it.apply {
-                            Timber.i("${longitude} register fine")
-                            Timber.i(latitude.toString())
+    fun getLocation() {
+        val locationPermission =
+            registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
+                when {
+                    permissions.getOrDefault(Manifest.permission.ACCESS_FINE_LOCATION, false) -> {
+                        fusedLocationProviderClient.lastLocation.addOnSuccessListener {
+                            it.apply {
+                                Timber.i("${longitude} register fine")
+                                Timber.i(latitude.toString())
+                            }
                         }
                     }
-                }
-                permissions.getOrDefault(Manifest.permission.ACCESS_COARSE_LOCATION, false) ->{
-                    fusedLocationProviderClient.lastLocation.addOnSuccessListener {
-                        it.apply {
-                            Timber.i("${longitude} register course")
-                            Timber.i(latitude.toString())
+                    permissions.getOrDefault(Manifest.permission.ACCESS_COARSE_LOCATION, false) -> {
+                        fusedLocationProviderClient.lastLocation.addOnSuccessListener {
+                            it.apply {
+                                Timber.i("${longitude} register course")
+                                Timber.i(latitude.toString())
+                            }
                         }
                     }
-                }else ->{
-                    Toast.makeText(this, "Permission not granted", Toast.LENGTH_SHORT).show()
+                    else -> {
+                        Toast.makeText(this, "Permission not granted", Toast.LENGTH_SHORT).show()
+                    }
                 }
             }
-        }
 
         when (PackageManager.PERMISSION_GRANTED) {
-            checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION), checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) -> {
+            checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION), checkSelfPermission(
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) -> {
                 fusedLocationProviderClient.lastLocation.addOnSuccessListener {
                     it.apply {
                         if (it != null) {
                             viewModel.addLocation(latitude, longitude, "default")
-                            viewModel.getCityByLoc(latitude,longitude)
+                            viewModel.getCityByLoc(latitude, longitude)
                         }
                     }
                 }
             }
             else -> {
-                locationPermission.launch(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION))
+                locationPermission.launch(
+                    arrayOf(
+                        Manifest.permission.ACCESS_FINE_LOCATION,
+                        Manifest.permission.ACCESS_COARSE_LOCATION
+                    )
+                )
             }
         }
     }
 
     @SuppressLint("MissingPermission")
-    fun mockLocation(){
+    fun mockLocation() {
 
         fusedLocationProviderClient.setMockMode(true)
         val mockLocation = Location("Mock")

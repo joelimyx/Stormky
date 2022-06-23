@@ -35,7 +35,7 @@ class StormkyWidget : AppWidgetProvider() {
         // Enter relevant functionality for when the last widget is disabled
     }
 
-    companion object{
+    companion object {
         const val widgetKey = "fromWidget"
     }
 }
@@ -52,11 +52,12 @@ internal fun updateAppWidget(
         flags = Intent.FLAG_ACTIVITY_NEW_TASK
     }
 
-    val pendingIntent:PendingIntent = PendingIntent.getActivity(
+    val pendingIntent: PendingIntent = PendingIntent.getActivity(
         context,
         1,
         hourlyIntent,
-        PendingIntent.FLAG_IMMUTABLE)
+        PendingIntent.FLAG_IMMUTABLE
+    )
 
     // Construct the RemoteViews object
     val views = RemoteViews(context.packageName, R.layout.widget_layout).apply {

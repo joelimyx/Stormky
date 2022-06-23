@@ -12,6 +12,7 @@ class GridWidgetService : RemoteViewsService() {
         return StackRemoteViewFactory(p0, this.applicationContext)
     }
 }
+
 class StackRemoteViewFactory(
     intent: Intent,
     val context: Context,
@@ -29,6 +30,7 @@ class StackRemoteViewFactory(
 
         return remoteView
     }
+
     override fun onDataSetChanged() {
         TODO("Not yet implemented")
     }
@@ -40,7 +42,6 @@ class StackRemoteViewFactory(
     override fun getCount(): Int {
         return count
     }
-
 
 
     override fun getLoadingView(): RemoteViews? {
