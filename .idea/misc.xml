@@ -17,6 +17,7 @@
         <entry key="..\:/Users/Cfrogz/AndroidStudioProjects/Stormky/app/src/main/res/drawable/ic_reverse_24.xml" value="0.2795" />
         <entry key="..\:/Users/Cfrogz/AndroidStudioProjects/Stormky/app/src/main/res/drawable/ic_reverse_svgrepo_com.xml" value="0.2795" />
         <entry key="..\:/Users/Cfrogz/AndroidStudioProjects/Stormky/app/src/main/res/drawable/ic_uv_rays_of_sun_svgrepo_com.xml" value="0.2795" />
+        <entry key="..\:/Users/Cfrogz/AndroidStudioProjects/Stormky/app/src/main/res/layout-sw600dp/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/Cfrogz/AndroidStudioProjects/Stormky/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Cfrogz/AndroidStudioProjects/Stormky/app/src/main/res/layout/fragment_alerts.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Cfrogz/AndroidStudioProjects/Stormky/app/src/main/res/layout/fragment_dashboard.xml" value="0.36666666666666664" />
@@ -31,9 +32,11 @@
         <entry key="..\:/Users/Cfrogz/AndroidStudioProjects/Stormky/app/src/main/res/layout/item_hourly.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Cfrogz/AndroidStudioProjects/Stormky/app/src/main/res/layout/item_temp.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Cfrogz/AndroidStudioProjects/Stormky/app/src/main/res/layout/item_widget_grid.xml" value="0.30012825994014536" />
+        <entry key="..\:/Users/Cfrogz/AndroidStudioProjects/Stormky/app/src/main/res/layout/nav_rail_logo.xml" value="0.30012825994014536" />
         <entry key="..\:/Users/Cfrogz/AndroidStudioProjects/Stormky/app/src/main/res/layout/stormky_widget.xml" value="0.3009833262077811" />
         <entry key="..\:/Users/Cfrogz/AndroidStudioProjects/Stormky/app/src/main/res/layout/widget_gridview.xml" value="0.30012825994014536" />
         <entry key="..\:/Users/Cfrogz/AndroidStudioProjects/Stormky/app/src/main/res/layout/widget_layout.xml" value="0.3009833262077811" />
+        <entry key="..\:/Users/Cfrogz/AndroidStudioProjects/Stormky/app/src/main/res/menu-sw600dp/nav_rail_menu.xml" value="0.18333333333333332" />
         <entry key="..\:/Users/Cfrogz/AndroidStudioProjects/Stormky/app/src/main/res/menu/bottom_nav_menu.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Cfrogz/AndroidStudioProjects/Stormky/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2795" />
         <entry key="..\:/Users/Cfrogz/AndroidStudioProjects/Stormky/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.2795" />
@@ -55,7 +58,7 @@
   <component name="VisualizationToolProject">
     <option name="state">
       <ProjectState>
-        <option name="scale" value="0.33" />
+        <option name="scale" value="0.36666666666666664" />
       </ProjectState>
     </option>
   </component>

@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
+import android.view.WindowMetrics
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
@@ -23,6 +24,7 @@ import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.color.DynamicColors
+import com.google.android.material.navigationrail.NavigationRailView
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 import java.util.concurrent.TimeUnit
@@ -32,7 +34,10 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var bottomNavView: BottomNavigationView
+    private lateinit var navigationRailView: NavigationRailView
     private lateinit var navController: NavController
+
+    private var widthDP: Float = 0.0f
 
     lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     private val viewModel: ForecastViewModel by viewModels {
@@ -54,27 +59,36 @@ class MainActivity : AppCompatActivity() {
         DynamicColors.applyToActivitiesIfAvailable(application)
         setContentView(binding.root)
 
-        bottomNavView = binding.navView
-
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_main) as NavHostFragment
         navController = navHostFragment.navController
 
-        bottomNavView.setupWithNavController(navController)
+        widthDP = resources.displayMetrics.widthPixels/resources.displayMetrics.density
+        if (widthDP< 600) {
+            Timber.i("600px")
+            bottomNavView = binding.navView as BottomNavigationView
+            bottomNavView.setupWithNavController(navController)
+        }else if (widthDP < 840){
+            Timber.i("840px")
+            navigationRailView = binding.navView as NavigationRailView
+            navigationRailView.setupWithNavController(navController)
+        }
 
     }
 
     override fun onStart() {
         super.onStart()
 
-        bottomNavView.setOnItemReselectedListener {
-            when (it.itemId) {
-                R.id.navigation_hourly -> {
-                    val navHost =
-                        supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_main)
-                    val hourFrag =
-                        navHost?.childFragmentManager?.fragments?.get(0) as HourlyFragment
-                    hourFrag.scrollToTop()
+        if (widthDP < 600) {
+            bottomNavView.setOnItemReselectedListener {
+                when (it.itemId) {
+                    R.id.navigation_hourly -> {
+                        val navHost =
+                            supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_main)
+                        val hourFrag =
+                            navHost?.childFragmentManager?.fragments?.get(0) as HourlyFragment
+                        hourFrag.scrollToTop()
+                    }
                 }
             }
         }
@@ -89,7 +103,10 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         viewModel.alertList.observe(this) {
-            bottomNavView.getOrCreateBadge(R.id.navigation_alerts).isVisible = !it.isNullOrEmpty()
+            if (widthDP < 600) {
+                bottomNavView.getOrCreateBadge(R.id.navigation_alerts).isVisible =
+                    !it.isNullOrEmpty()
+            }
         }
 
     }
