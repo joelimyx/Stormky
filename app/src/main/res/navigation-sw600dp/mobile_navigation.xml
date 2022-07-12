@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.example.stormky.ui.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home">
+
+        <action
+            android:id="@+id/action_widget_to_hourly"
+            app:destination="@id/navigation_hourly"
+            app:popUpTo="@id/mobile_navigation"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_notif_to_alerts"
+            app:destination="@id/navigation_alerts"
+            app:popUpTo="@id/mobile_navigation"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_hourly"
+        android:name="com.example.stormky.ui.hourly.HourlyFragment"
+        android:label="@string/title_hourly"
+        tools:layout="@layout/fragment_hourly">
+        <argument
+            android:name="@string/is_wide_hourly"
+            app:argType="boolean"
+            android:defaultValue="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_daily"
+        android:name="com.example.stormky.ui.hourly.HourlyFragment"
+        android:label="@string/title_daily"
+        tools:layout="@layout/fragment_hourly">
+        <argument
+            android:name="@string/is_wide_daily"
+            app:argType="boolean"
+            android:defaultValue="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_alerts"
+        android:name="com.example.stormky.ui.alerts.AlertsFragment"
+        android:label="@string/title_alerts"
+        tools:layout="@layout/fragment_alerts" />
+</navigation>

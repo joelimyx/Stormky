@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navigationRailView: NavigationRailView
     private lateinit var navController: NavController
 
-    private var widthDP: Float = 0.0f
+    var widthDP: Float = 0.0f
 
     lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     private val viewModel: ForecastViewModel by viewModels {
@@ -81,6 +81,18 @@ class MainActivity : AppCompatActivity() {
 
         if (widthDP < 600) {
             bottomNavView.setOnItemReselectedListener {
+                when (it.itemId) {
+                    R.id.navigation_hourly -> {
+                        val navHost =
+                            supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_main)
+                        val hourFrag =
+                            navHost?.childFragmentManager?.fragments?.get(0) as HourlyFragment
+                        hourFrag.scrollToTop()
+                    }
+                }
+            }
+        }else{
+            navigationRailView.setOnItemReselectedListener {
                 when (it.itemId) {
                     R.id.navigation_hourly -> {
                         val navHost =

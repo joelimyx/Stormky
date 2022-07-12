@@ -9,6 +9,10 @@
         android:id="@+id/navigation_hourly"
         android:icon="@drawable/ic_hourly_24"
         android:title="@string/title_hourly" />
+    <item
+        android:id="@+id/navigation_daily"
+        android:icon="@drawable/ic_baseline_calendar_24"
+        android:title="@string/title_daily"/>
 
     <item
         android:id="@+id/navigation_alerts"
