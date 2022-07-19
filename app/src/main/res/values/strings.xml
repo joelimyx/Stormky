@@ -21,4 +21,7 @@
     <string name="appwidget_text">EXAMPLE</string>
     <string name="add_widget">Add widget</string>
     <string name="app_widget_description">Hourly Weather Widget</string>
+    <string name="title_daily">Daily</string>
+    <string name="is_wide_hourly">Is wide Hourly</string>
+    <string name="is_wide_daily">Is wide Daily</string>
 </resources>
