@@ -43,13 +43,11 @@ class HourlyFragment : Fragment() {
             recyclerView.adapter = HourlyAdapter()
             dailyRecyclerView.adapter = DailyAdapter()
         }
-        if (isWideHourly || isWideDaily){
-            binding.switchFab.visibility = View.INVISIBLE
-            if(isWideDaily){
-                binding.recyclerView.visibility = View.INVISIBLE
-                binding.dailyRecyclerView.visibility = View.VISIBLE
-            }
+        if(isWideDaily){
+            binding.recyclerView.visibility = View.INVISIBLE
+            binding.dailyRecyclerView.visibility = View.VISIBLE
         }
+
     }
 
     override fun onDestroyView() {

@@ -6,11 +6,15 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
+import android.view.ViewGroup
+import android.view.WindowInsets
+import android.view.WindowManager
 import android.view.WindowMetrics
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.*
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
@@ -51,6 +55,8 @@ class MainActivity : AppCompatActivity() {
 
         Timber.plant(Timber.DebugTree())
 
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
         getLocation()
 
@@ -74,6 +80,15 @@ class MainActivity : AppCompatActivity() {
             navigationRailView.setupWithNavController(navController)
         }
 
+        ViewCompat.setOnApplyWindowInsetsListener(binding.navHostFragmentActivityMain){v, insets ->
+            val temp = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.updateLayoutParams<ViewGroup.MarginLayoutParams> {
+                bottomMargin = temp.bottom
+//                topMargin = temp.top
+            }
+
+            WindowInsetsCompat.CONSUMED
+        }
     }
 
     override fun onStart() {
